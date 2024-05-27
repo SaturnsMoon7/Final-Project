@@ -18,6 +18,7 @@ public class MealList extends Ingredient
     //This should get the name of the meal and put the ingredient together for the meal.
     public void display()
     {
-        System.out.println();
+        System.out.println(mealName);
+        
     }
 }
