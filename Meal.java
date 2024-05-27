@@ -8,7 +8,7 @@ public class Meal {
         this.ingredients = ingredients;
     }
 
-    public void EditName(int newName)
+    public void EditName(String newName)
     { this.name = newName; }
 
     public void EditIngredients(int index, Ingredient newIngredient)
