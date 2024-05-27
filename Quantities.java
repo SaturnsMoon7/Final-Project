@@ -6,16 +6,12 @@ public class Quantities {
         cups,
         litres,
     }
-    // tsp -> tbsp
-    // tsp -> grams
-    // tsp -> cups
-    // tsp -> litres
 
     // Premade units
     private float amount;
     private MeasurementUnit unit;
 
-    // Custom unit
+    // Custom units
     private String customUnit;
     private boolean customUnitReal = false;
 
