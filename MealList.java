@@ -1,18 +1,23 @@
-public class MealList implements ItemList {
 
-    public void AddItem(Meal newMeal)
-    { this.itemList.add(newMeal); }
+public class MealList extends Ingredient
+{
+    private String mealName;
 
-    public void RemoveItem(int index)
-    { this.itemList.remove(index) }
-
-    public void EditItem(int index, int option, Object newValue)
+    //This will add mealName to the ingredient list.
+    public MealList (String mealName, String name, Quantities amount)
     {
-        Meal meal = this.itemList.get(index)
-        if (option == 1) {
-            meal.EditName(newValue);
-        } else if (option == 2) {
-            meal.EditIngredients(index, null);
-        }
+        super (name,amount);
+        this.mealName = mealName;
+    }
+
+    public String getMealName()
+    {
+        return this.mealName;
+    }
+
+    //This should get the name of the meal and put the ingredient together for the meal.
+    public void display()
+    {
+        System.out.println();
     }
 }
