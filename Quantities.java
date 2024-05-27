@@ -11,8 +11,13 @@ public class Quantities {
     // tsp -> cups
     // tsp -> litres
 
+    // Premade units
     private float amount;
     private MeasurementUnit unit;
+
+    // Custom unit
+    private String customUnit;
+    private boolean customUnitReal = false;
 
     Quantities(float amount, MeasurementUnit unit){
         this.amount = amount;
@@ -27,10 +32,25 @@ public class Quantities {
         this.amount -= amountToRemove;
     }
 
+    // Planning for a custom unit adder but I'm conflicted on how to add it.
+    Quantities (float amount, String unit){
+        this.amount = amount;
+        this.customUnit = unit;
+
+        //Sets to true
+        this.customUnitReal = true;
+    }
+
     // idk if I really need this
     // might be a bit much aaa
     // i will make it when I need it
     public void convert(MeasurementUnit newUnit){
+        //Check if custom unit
+        if (customUnitReal){
+            System.out.println("Cannot convert due to custom unit");
+            return;
+        }
+        
         //compare current unit with new unit
 
         //find the conversion ratio for that type
@@ -43,7 +63,7 @@ public class Quantities {
 
     @Override
     public String toString(){
-        return amount + " " + unit;
+        return customUnitReal ? amount + " " + customUnit : amount + " " + unit;
     }
 
     // Conversions below
