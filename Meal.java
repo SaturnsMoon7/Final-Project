@@ -1,8 +1,8 @@
 public class Meal {
-    private int name;
-    private IngredientsList ingredients;
+    private String name;
+    private IngredientList ingredients;
 
-    public Meal(int name, IngredientsList ingredients)
+    public Meal(String name, IngredientList ingredients)
     {
         this.name = name;
         this.ingredients = ingredients;
@@ -12,5 +12,5 @@ public class Meal {
     { this.name = newName; }
 
     public void EditIngredients(int index, Ingredient newIngredient)
-    { IngredientsList.set(index, newIngredient); }
+    { IngredientList.EditItem(index, newIngredient); }
 }
