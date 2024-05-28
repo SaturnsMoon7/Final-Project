@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-abstract public class ItemList {
-    abstract public void AddItem();
-    abstract public void RemoveItem();
-}
+public abstract class ItemList{
+    public abstract void AddItem();
+    public abstract void RemoveItem();
+    public abstract void EditItem();
+    //Sort ?
+} 
