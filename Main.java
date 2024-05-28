@@ -18,10 +18,14 @@ class Main
         boolean looping = true;
         while (looping) 
         {
-
+            String name = getUserStr();
+            IngredientList ingredients = IngredientList();
+            
         }
         return newMealList;
     }
+
+    public ArrayList<Ingredient> initializeIngredientList();
 
     public int getUserInt(int min, int max)
     {

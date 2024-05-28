@@ -15,6 +15,10 @@ public class Ingredient{
         this.amount = newAmount;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     // Output:
     // You can change it anyway you want Willchel gl
     public void displayIngredient()
