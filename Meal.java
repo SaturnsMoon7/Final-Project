@@ -1,11 +1,16 @@
-public class Meal {
+import java.util.Scanner;
+
+public class Meal 
+{
     private String name;
     private IngredientList ingredients;
+    private int minutes;
 
-    public Meal(String name, IngredientList ingredients)
+    public Meal(String name, IngredientList ingredients, int minutes)
     {
         this.name = name;
         this.ingredients = ingredients;
+        this.minutes = minutes;
     }
 
     public void EditName(String newName)
@@ -13,4 +18,13 @@ public class Meal {
 
     public void EditIngredients(int index, Ingredient newIngredient)
     { IngredientList.EditItem(index, newIngredient); }
+
+    public void EditMealPrep(int newMinutes)
+    {
+        this.minutes =newMinutes;
+    }
+
+    public int setMEalPrep
+
+
 }
