@@ -43,7 +43,7 @@ public class Quantities {
     public void convert(MeasurementUnit newUnit){
         //Check if custom unit
         if (customUnitReal){
-            System.out.println("Cannot convert due to custom unit");
+            System.out.println("Cannot convert due to custom unit"); //this is an output
             return;
         }
         
