@@ -17,8 +17,8 @@ public class Ingredient{
 
     // Output:
     // You can change it anyway you want Willchel gl
-    @Override
-    public String toString(){
-        return "Name: " + name + "\nAmount" + amount.toString();
+    public void displayIngredient()
+    {
+        System.out.println("Name: " + name + "\nAmount" + amount.toString());
     }
 }

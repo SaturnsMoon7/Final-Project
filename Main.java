@@ -8,6 +8,8 @@ class Main
         System.out.println("Welcome to your meals and ingreidient organizer!");
         System.out.println("Please choose what you'd like to do next:");
 
+        
+
 
 
 
