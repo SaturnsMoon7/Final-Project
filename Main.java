@@ -9,10 +9,10 @@ class Main
         System.out.println("Welcome to the pantry");
         System.out.println("Begin by filling your pantry with avaiable ingredients!");
         initializeIngredientList(MainIngredients);
-
+        initializeMealList(MainMeals);
     }
 
-    public ArrayList<Meal> initializeMealList(MealList meals)
+    public static void initializeMealList(MealList meals)
     {
         boolean looping = true;
         while (looping) 
@@ -27,19 +27,19 @@ class Main
                 break;
             }
 
-            IngredientList ingredients = initializeIngredientList();
-            Meal newMeal = new Meal(name, ingredients);
-            MealList.AddItem(newMeal);
+            IngredientList mealIngredients = new IngredientList();
+            initializeIngredientList(mealIngredients);
+            Meal newMeal = new Meal(name, mealIngredients);
+            meals.AddItem(newMeal);
         }
-        return newMealList;
     }
 
-    public void initializeIngredientList(IngredientList Ingredients)
+    public static void initializeIngredientList(IngredientList ingredients)
     {
         boolean looping = true;
         while (looping)
         {
-            Ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead 
+            ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead 
             System.out.println("Type the name of the ingredient");
             System.out.println("Type 'done' if you are finished");
 
@@ -55,11 +55,11 @@ class Main
             Quantities quantity = new Quantities(amount, name);
 
             Ingredient newIngredient = new Ingredient(name, quantity);
-            Ingredients.AddItem(newIngredient);
+            ingredients.AddItem(newIngredient);
         }
     }
 
-    public int getUserInt()
+    public static int getUserInt()
     {
         int input = 0;
         boolean looping = true;
@@ -70,7 +70,7 @@ class Main
         return input;
     }
 
-    public float getUserFloat()
+    public static float getUserFloat()
     {
         float input = 0;
         boolean looping = true;
@@ -81,7 +81,7 @@ class Main
         return input;
     }
 
-    public String getUserStr()
+    public static String getUserStr()
     {
         String input = "";
         boolean looping = true;
