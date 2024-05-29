@@ -48,14 +48,19 @@ public class IngredientList{
         int end = ingredientList.size() - 1;
 
         while (true) {
+            //Set mid
             int mid = Math.round(((start + end) /2));
+
+            // I need this for readability
             String currentMid = ingredientList.get(mid).getName();
 
+            //Remeber old start and old end
             int oldStart = start;
             int oldEnd = end;
 
+            // Compare and redo
             if(currentMid.equals(ItemToSerchFor)){
-                //found condition
+                //finally found the item
                 return mid;
             }
             else if(currentMid.compareTo(ItemToSerchFor) > 0){
@@ -77,10 +82,20 @@ public class IngredientList{
         }
     }
 
+    // TODO: Merge sort by name, Merge sort by qunatity.
+
     //Merge sort
     private void sortList(ArrayList<Ingredient> listToSort, int start, int end){
+        //Base case
 
+        //Divide array
+
+        //Merge first part
+        
+        //Merge second part
+
+        //merge both
+
+        //return
     }
-
-
 }
