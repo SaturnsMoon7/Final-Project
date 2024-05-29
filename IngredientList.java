@@ -12,8 +12,17 @@ public class IngredientList{
         this.ingredientList.remove(index);
     }
 
-    public void EditItem(int index){
-        
+    // I <3 seperate constructors :)
+    public void EditItem(int index, Quantities amountToChange){
+        ingredientList.get(index).changeAmount(amountToChange);
+    }
+
+    public void EditItem(int index, String nameToChangeTo){
+        ingredientList.get(index).changeName(nameToChangeTo);
+    }
+
+    public void EditItem(int index, Ingredient newIngredient){
+        ingredientList.set(index, newIngredient);
     }
 
     //These are just for fun
@@ -40,35 +49,32 @@ public class IngredientList{
 
         while (true) {
             int mid = Math.round(((start + end) /2));
+            String currentMid = ingredientList.get(mid).getName();
 
             int oldStart = start;
             int oldEnd = end;
 
-            if(ingredientList.get(mid).getName() == ItemToSerchFor){
+            if(currentMid.equals(ItemToSerchFor)){
                 //found condition
                 return mid;
-                break;
             }
-            else if(ingredientList.get(mid).getName() > ItemToSerchFor){
+            else if(currentMid.compareTo(ItemToSerchFor) > 0){
+                //ingredientlist at mid is greater than item
+                start = mid + 1;
+            }
+            else if(currentMid.compareTo(ItemToSerchFor) < 0){
+                //ingredientlist at mid is less than item
+                end = mid - 1;
+            }
 
-            }
-            else if(ingredientList.get(mid).getName() < ItemToSerchFor){
-
-            }
+            //I have no clue if this actually works
             
-
             //failsafe
             if (oldStart == start && oldEnd == end){
                 //nonexistent item
                 return -1;
             }
-
-
         }
-        
-        
-
-        return mid;
     }
 
     //Merge sort

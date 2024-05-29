@@ -1,12 +1,21 @@
-
-public class MealList extends Ingredient
+import java.util.Scanner;
+public class MealList extends Meal
 {
+    private Scanner in;
     private String mealName;
+    private Quantities amount;
 
-    //This will add mealName to the ingredient list.
-    public MealList (String mealName, String name, Quantities amount)
+    private MealList()
     {
-        super (name,amount);
+        meal = new MealList();
+        in = new Scanner(System.in);
+    }
+
+    //This will add mealName to the ingredient list.t
+    public MealList (String mealName, String name, IngredientList ingredients , int minutes, Quantities amount)
+    {
+        super (name, ingredients, minutes);
+        this.amount = amount;
         this.mealName = mealName;
     }
 
@@ -19,6 +28,12 @@ public class MealList extends Ingredient
     public void display()
     {
         System.out.println(mealName);
+    }
+
+    public void addmeal(String mealName, String name, IngredientList ingredients , int minutes, Quantities amount)
+    {
+        System.out.println("Please write the Meal name");
+        
         
     }
 }
