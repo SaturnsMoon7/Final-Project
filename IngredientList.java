@@ -24,8 +24,13 @@ public class IngredientList{
     public void EditItem(Ingredient ingredientToEdit){
         //search again
     }
+    
+    public ArrayList<Ingredient> getList(){
+        return this.ingredientList;
+    }
 
-    //Binary Search
+    // Binary Search
+    // Returns index once item is found
     private int searchlist(Ingredient ingredientToSearchFor){
         String ItemToSerchFor = ingredientToSearchFor.getName();
 
@@ -41,6 +46,7 @@ public class IngredientList{
 
             if(ingredientList.get(mid).getName() == ItemToSerchFor){
                 //found condition
+                return mid;
                 break;
             }
             else if(ingredientList.get(mid).getName() > ItemToSerchFor){
