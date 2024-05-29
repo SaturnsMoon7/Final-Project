@@ -82,7 +82,7 @@ public class IngredientList{
         }
     }
 
-    // TODO: Merge sort by name, Merge sort by qunatity.
+    // TODO: Merge sort by name, Merge sort by qunatity. // Eduard got this
 
     //Merge sort
     private void sortList(ArrayList<Ingredient> listToSort, int start, int end){
