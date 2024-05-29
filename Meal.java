@@ -17,14 +17,14 @@ public class Meal
     { this.name = newName; }
 
     public void EditIngredients(int index, Ingredient newIngredient)
-    { IngredientList.EditItem(index, newIngredient); }
+    { ingredients.EditItem(index, newIngredient); }
 
     public void EditMealPrep(int newMinutes)
     {
         this.minutes =newMinutes;
     }
 
-    public int setMEalPrep
+    public int setMealPrep;
 
 
 }
