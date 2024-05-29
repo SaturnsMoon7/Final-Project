@@ -4,17 +4,20 @@ class Main
 {
     public static void main(String[] args) 
     {
+        IngredientList MainIngredients = new IngredientList();
+        MealList MainMeals = new MealList();
         System.out.println("Welcome to the pantry");
         System.out.println("Begin by filling your pantry with avaiable ingredients!");
-        
+        initializeIngredientList(MainIngredients);
+
     }
 
-    public ArrayList<Meal> initializeMealList()
+    public ArrayList<Meal> initializeMealList(MealList meals)
     {
-        ArrayList<Meal> newMealList = new ArrayList<Meal>();
         boolean looping = true;
         while (looping) 
         {
+            meals.DisplayList(); 
             System.out.println("Type the name of the meal.");
             System.out.println("Type 'done' if you are finished");
 
@@ -31,12 +34,12 @@ class Main
         return newMealList;
     }
 
-    public IngredientList initializeIngredientList()
+    public void initializeIngredientList(IngredientList Ingredients)
     {
-        IngredientList newIngredients = new IngredientList();
         boolean looping = true;
         while (looping)
         {
+            Ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead 
             System.out.println("Type the name of the ingredient");
             System.out.println("Type 'done' if you are finished");
 
@@ -45,16 +48,15 @@ class Main
                 looping = false;
                 break;
             }
-            
+
             System.out.println("Type the amount");
             float amount = getUserFloat();
         
             Quantities quantity = new Quantities(amount, name);
 
             Ingredient newIngredient = new Ingredient(name, quantity);
-            newIngredients.AddItem(newIngredient);
+            Ingredients.AddItem(newIngredient);
         }
-        return newIngredients;
     }
 
     public int getUserInt()
