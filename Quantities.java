@@ -10,6 +10,10 @@ public class Quantities {
     // Premade units
     private float amount;
     private MeasurementUnit unit;
+    
+    // Use baseUnit to help compare Quantites in other conversions.
+    // Base unit is grams.
+    private float inGrams;
 
     // Custom units
     private String customUnit;
@@ -18,14 +22,21 @@ public class Quantities {
     Quantities(float amount, MeasurementUnit unit){
         this.amount = amount;
         this.unit = unit;
+
+        // TODO: base unit conversion needed!!!
     }
 
+    //Basic functions
     public void addAmount(float amountToAdd){
         this.amount += amountToAdd;
     }
 
     public void subtractAmount(float amountToRemove){
         this.amount -= amountToRemove;
+    }
+
+    public float getGrams(){
+        return inGrams;
     }
 
     // Planning for a custom unit adder but I'm conflicted on how to add it.
@@ -35,6 +46,9 @@ public class Quantities {
 
         //Sets to true
         this.customUnitReal = true;
+
+        //1:1 with grams bc we have no clue.
+        inGrams = amount;
     }
 
     // idk if I really need this
