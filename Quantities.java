@@ -24,6 +24,7 @@ public class Quantities {
         this.unit = unit;
 
         // TODO: base unit conversion needed!!!
+
     }
 
     //Basic functions
@@ -60,8 +61,48 @@ public class Quantities {
             System.out.println("Cannot convert due to custom unit"); //this is an output
             return;
         }
-        
+
         //compare current unit with new unit
+        if(unit == newUnit){
+            return;
+        }
+        
+        // Define a 2d array of conversion units
+        /* 
+        float[][] conversionTable = {
+            //       tsp   tbsp  grams  cups  litres
+            /* tsp  {1, 1/3.0f, 4.92892f, 1/48.0f, 1/768.0f},
+            /* tbsp  {3, 1, 14.7868f, 1/16.0f, 1/256.0f},
+            /* grams {0.202884f, 0.067628f, 1, 0.201884f, 0.00378541f},
+            /* cups  {48, 16, 236.588f, 1, 1/4.0f},
+            /* litres {768, 256, 3785.41f, 4, 1}
+        }; 
+        */
+
+        // Order of conversion units: tsp   tbsp  grams  cups  litres
+        switch (unit) {
+            case tsp:
+                float[] conversionTable = {1, 1/3f, 5.69f, 1/48f, 1/202.9f};
+                break;
+            
+            case tbsp:
+                break;
+
+            case grams:
+                break;
+
+            case cups:
+                break;
+
+            case litres:
+                break;
+        
+            default:
+            // error
+                return;
+        }
+
+
 
         //find the conversion ratio for that type
 
@@ -76,6 +117,8 @@ public class Quantities {
         return customUnitReal ? amount + " " + customUnit : amount + " " + unit;
     }
 
-    // Conversions below
+    public void display(){
+        System.out.println(customUnitReal ? amount + " " + customUnit : amount + " " + unit);
+    }
 
 }
