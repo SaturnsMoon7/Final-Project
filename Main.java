@@ -65,23 +65,44 @@ class Main
         }
     }
 
-    public static int getUserInt()
+    public static int getUserInt(int min, int max)
     {
-        int input = 0;
-        boolean looping = true;
-        while (looping) 
-        {
-            looping = false;
-        }   
-        return input;
+        Scanner scn = new Scanner(System.in);
+
+        int userNumber = min - 1; // Set userNumber to be less than min, so that we enter the loop.
+        String prompt = "Enter an integer between " + min + " and " + max + ": ";
+
+        boolean repeat = false;
+        while (userNumber < min || userNumber > max) { // Note: || means or
+            // Modify the prompt based on whether we are repeating or not.
+            if (repeat) {
+                System.out.println("Number must be at least " + min + " and at most " + max + ".\n");
+                System.out.print(prompt);
+            } else {
+                repeat = true;
+                System.out.print(prompt);
+            }
+
+            // Loop as long as an integer has NOT been inputted.
+            while (!scn.hasNextInt()) {
+                System.out.println("That is not an integer.\n");
+                System.out.print(prompt);
+                scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
+            }
+
+            // There is a valid integer, so grab that and store it in userNumber.
+            userNumber = scn.nextInt();
+        }
+        return userNumber;
     }
 
     public static float getUserFloat()
     {
+        Scanner scn = new Scanner(System.in);
         float input = 0;
+
         boolean looping = true;
-        while (looping) 
-        {
+        while (looping) {
             looping = false;
         }   
         return input;
