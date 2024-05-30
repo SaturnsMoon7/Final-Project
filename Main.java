@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 class Main
 {
-    private static Scanner in;
     public static void main(String[] args) 
     {
         IngredientList MainIngredients = new IngredientList();
@@ -14,12 +13,12 @@ class Main
         initializeMealList(MainMeals);
     }
 
-    public static void initializeMealList(MealList meals)
+    public static void initializeMealList(MealList mealList)
     {
         boolean looping = true;
         while (looping) 
         {
-            meals.DisplayList(); 
+            mealList.DisplayList(); 
             System.out.println("Type the name of the meal.");
             String mealName = in.nextLine();
             System.out.println("Type 'done' if you are finished");
@@ -33,8 +32,9 @@ class Main
 
             IngredientList mealIngredients = new IngredientList();
             initializeIngredientList(mealIngredients);
-            Meal newMeal = new Meal(name, mealIngredients);
-            meals.AddItem(newMeal);
+            int time = getUserInt();
+            Meal newMeal = new Meal(name, mealIngredients, time);
+            mealList.AddItem(newMeal);
         }
     }
 
@@ -65,7 +65,20 @@ class Main
         }
     }
 
-    public static int getUserInt(int min, int max)
+    public static int getUserInt()
+    {
+        Scanner scn = new Scanner(System.in);
+
+        int input = 0;
+
+        boolean repeat = true;
+        while (repeat) { // Note: || means or
+            repeat = false;
+        }
+        return input;
+    }
+    
+    public static int  getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
 
