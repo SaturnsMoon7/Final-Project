@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class Main
 {
+    private static Scanner in;
     public static void main(String[] args) 
     {
         IngredientList MainIngredients = new IngredientList();
@@ -19,7 +21,9 @@ class Main
         {
             meals.DisplayList(); 
             System.out.println("Type the name of the meal.");
+            String mealName = in.nextLine();
             System.out.println("Type 'done' if you are finished");
+            String confinmation = in.nextLine();
 
             String name = getUserStr();
             if (name.toLowerCase() == "done") {
@@ -41,7 +45,9 @@ class Main
         {
             ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead 
             System.out.println("Type the name of the ingredient");
+            String ingredientName = in.nextLine();
             System.out.println("Type 'done' if you are finished");
+            String confinmation = in.nextLine();
 
             String name = getUserStr();
             if (name.toLowerCase() == "done") {
