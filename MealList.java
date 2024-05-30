@@ -1,11 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 public class MealList extends Meal
 {
     private Scanner in;
     private String mealName;
     private Quantities amount;
 
+    List<String> mealList = new ArrayList<>();
     //This will add mealName to the ingredient list.t
     public MealList (String mealName, String name, IngredientList ingredients , int minutes, Quantities amount)
     {
@@ -29,21 +32,25 @@ public class MealList extends Meal
     {
         System.out.println("Please write the Meal name");
         String mealName  = in.nextLine();
-        this.mealName.add(addMealname);
+        mealList.add(addMealname);
     }
 
     public void removemeal(String removeMealName)
     {
         System.out.println("Please write the name of the meal that you'd like to remove");
         String mealName = in.nextLine();
-        this.mealName.remove(removeMealName);
+        mealList.remove(removeMealName);
         
     }
 
-    public void modifyMeal(String modifyMealName)
+    public void EditMealList(String newMealName)
     {
-        System.out.println("Please write down the name of the Meal that you'd like to modify");
-        String mealName = in.nextLine();
-        this.mealName.modify(modifyMealName);
+        this.mealName = newMealName;
     }
+
+    public String setMealName()
+    {
+        return mealName;
+    }
+
 }
