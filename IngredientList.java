@@ -1,41 +1,21 @@
 import java.util.ArrayList;
 
-public class IngredientList{
-    private ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
-
-    //Note: Item = Ingredient
-    public void AddItem(Ingredient ingredientToAdd){
-        this.ingredientList.add(ingredientToAdd);
-    }
-
-    public void RemoveItem(int index){
-        this.ingredientList.remove(index);
-    }
+public class IngredientList extends ArrayList<Ingredient>
+{
 
     // I <3 seperate constructors :)
-    public void EditItem(int index, Quantities amountToChange){
-        ingredientList.get(index).changeAmount(amountToChange);
+    public void EditItem(int index, Quantities amountToChange)
+    {
+        this.get(index).changeAmount(amountToChange);
+    }
+    public void EditItem(int index, String nameToChangeTo)
+    {
+        this.get(index).changeName(nameToChangeTo);
     }
 
-    public void EditItem(int index, String nameToChangeTo){
-        ingredientList.get(index).changeName(nameToChangeTo);
-    }
-
-    public void EditItem(int index, Ingredient newIngredient){
-        ingredientList.set(index, newIngredient);
-    }
-
-    //These are just for fun
-    public void RemoveItem(Ingredient ingredientToRemove){
-        //search for ingredient to remove within list.
-    }
-
-    public void EditItem(Ingredient ingredientToEdit){
-        //search again
-    }
-    
-    public ArrayList<Ingredient> getList(){
-        return this.ingredientList;
+    public void EditItem(int index, Ingredient newIngredient)
+    {
+        this.set(index, newIngredient);
     }
 
     // Binary Search
@@ -45,14 +25,14 @@ public class IngredientList{
 
         //assume the list is sorted
         int start = 0;
-        int end = ingredientList.size() - 1;
+        int end = this.size() - 1;
 
         while (true) {
             //Set mid
             int mid = Math.round(((start + end) /2));
 
             // I need this for readability
-            String currentMid = ingredientList.get(mid).getName();
+            String currentMid = this.get(mid).getName();
 
             //Remeber old start and old end
             int oldStart = start;
