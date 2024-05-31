@@ -7,8 +7,10 @@ class Main
     {
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
+
         System.out.println("Welcome to the pantry");
         System.out.println("Begin by filling your pantry with avaiable ingredients!");
+
         initializeIngredientList(MainIngredients);
         initializeMealList(MainMeals);
     }
@@ -18,12 +20,14 @@ class Main
         boolean looping = true;
         while (looping) 
         {
-            mealList.DisplayList(); 
-            System.out.println("Type the name of the meal.");
-            String mealName = in.nextLine();
-            System.out.println("Type 'done' if you are finished");
-            String confinmation = in.nextLine();
+            if (mealList.size() == 0)
+            {
+                System.out.println("No saved meals");
+            } else {
+                mealList.Display();
+            }
 
+            System.out.println("Type the name of the meal or 'done' if you are finished");
             String name = getUserStr();
             if (name.toLowerCase() == "done") {
                 looping = false;
@@ -34,21 +38,17 @@ class Main
             initializeIngredientList(mealIngredients);
             int time = getUserInt();
             Meal newMeal = new Meal(name, mealIngredients, time);
-            mealList.AddItem(newMeal);
+            mealList.add(newMeal);
         }
     }
 
-    public static void initializeIngredientList(IngredientList ingredients)
+    public static void initializeIngredientList(IngredientList ingredientList)
     {
         boolean looping = true;
         while (looping)
         {
-            ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead | I made it
-            System.out.println("Type the name of the ingredient");
-            String ingredientName = in.nextLine();
-            System.out.println("Type 'done' if you are finished");
-            String confinmation = in.nextLine();
-
+            ingredientList.Display(); 
+            System.out.println("Type the name of the meal or 'done' if you are finished");
             String name = getUserStr();
             if (name.toLowerCase() == "done") {
                 looping = false;
@@ -59,9 +59,8 @@ class Main
             float amount = getUserFloat();
         
             Quantities quantity = new Quantities(amount, name);
-
             Ingredient newIngredient = new Ingredient(name, quantity);
-            ingredients.AddItem(newIngredient);
+            ingredientList.add(newIngredient);
         }
     }
 
