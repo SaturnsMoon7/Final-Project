@@ -79,16 +79,20 @@ public class Quantities {
         }; 
         */
 
+        float[] conversionTable;
+
         // Order of conversion units: tsp   tbsp  grams  cups  litres
         switch (unit) {
             case tsp:
-                float[] conversionTable = {1, 1/3f, 5.69f, 1/48f, 1/202.9f};
+                conversionTable = new float[]{1, 1/3f, 5.69f, 1/48f, 1/202.9f};
                 break;
             
             case tbsp:
+                conversionTable = new float[]{3, 1, 14.175f, 1/16f, 1/67.628f};
                 break;
 
             case grams:
+                conversionTable = new float[]{4.9289f, 0.67f, 1, 1/250f, };
                 break;
 
             case cups:
@@ -101,6 +105,7 @@ public class Quantities {
             // error
                 return;
         }
+        // Conversions won't be the most accurate due to items having different densities
 
 
 
