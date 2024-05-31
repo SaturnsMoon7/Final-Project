@@ -43,7 +43,7 @@ class Main
         boolean looping = true;
         while (looping)
         {
-            ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead 
+            ingredients.DisplayList(); // Cris, can you make getList in IngredientList DisplayList instead | I made it
             System.out.println("Type the name of the ingredient");
             String ingredientName = in.nextLine();
             System.out.println("Type 'done' if you are finished");
