@@ -52,9 +52,6 @@ public class Quantities {
         inGrams = amount;
     }
 
-    // idk if I really need this
-    // might be a bit much aaa
-    // i will make it when I need it
     public void convert(MeasurementUnit newUnit){
         //Check if custom unit
         if (customUnitReal){
@@ -63,55 +60,38 @@ public class Quantities {
         }
 
         //compare current unit with new unit
-        if(unit == newUnit){
-            return;
-        }
+        if(unit == newUnit){return;}
         
-        // Define a 2d array of conversion units
-        /* 
-        float[][] conversionTable = {
-            //       tsp   tbsp  grams  cups  litres
-            /* tsp  {1, 1/3.0f, 4.92892f, 1/48.0f, 1/768.0f},
-            /* tbsp  {3, 1, 14.7868f, 1/16.0f, 1/256.0f},
-            /* grams {0.202884f, 0.067628f, 1, 0.201884f, 0.00378541f},
-            /* cups  {48, 16, 236.588f, 1, 1/4.0f},
-            /* litres {768, 256, 3785.41f, 4, 1}
-        }; 
-        */
-
         float[] conversionTable;
 
         // Order of conversion units: tsp   tbsp  grams  cups  litres
         switch (unit) {
-            case tsp:
-                conversionTable = new float[]{1, 1/3f, 5.69f, 1/48f, 1/202.9f};
-                break;
-            
-            case tbsp:
-                conversionTable = new float[]{3, 1, 14.175f, 1/16f, 1/67.628f};
-                break;
-
-            case grams:
-                conversionTable = new float[]{4.9289f, 0.67f, 1, 1/250f, };
-                break;
-
-            case cups:
-                break;
-
-            case litres:
-                break;
-        
-            default:
-            // error
-                return;
+            case tsp: conversionTable = new float[]{1, 1/3f, 5.69f, 1/48f, 1/202.9f}; break;
+            case tbsp: conversionTable = new float[]{3, 1, 14.175f, 1/16f, 1/67.628f}; break;
+            case grams: conversionTable = new float[]{4.9289f, 0.67f, 1, 1/250f, 0.001f}; break;
+            case cups: conversionTable = new float[]{48f, 16f, 250f, 1, 0.236588f}; break;
+            case litres: conversionTable = new float[]{202.9f, 68.628f, 4.22675f, 1}; break;
+            default: System.out.println("Unit: Conversion Table Error"); return;
         }
-        // Conversions won't be the most accurate due to items having different densities
-
-
+        /* !!! NOTE: Conversions won't be the most accurate due to items having different densities !!! */
 
         //find the conversion ratio for that type
+        int index;
+
+        switch (newUnit){
+            case tsp: index = 0; break;
+            case tbsp: index = 1; break;
+            case grams: index = 2; break;
+            case cups: index = 3; break;
+            case litres: index = 4; break;
+            default: System.out.println("newUnit: Conversion Table Error"); return;
+        }
 
         //convert and set unit to new value
+        this.amount *= conversionTable[index];
+        this.unit = newUnit;
+
+        //Does this work? Idk.
     }
 
     // Note for Willchel
