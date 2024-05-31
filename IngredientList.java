@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class IngredientList extends ArrayList<Ingredient>
 {
-
-    //fefegfegeg
     // I <3 seperate constructors :)
     public void EditItem(int index, Quantities amountToChange)
     {
@@ -63,7 +61,7 @@ public class IngredientList extends ArrayList<Ingredient>
         }
     }
 
-    // TODO: Merge sort by name, Merge sort by qunatity. // Eduard got this
+    // TODO: Merge sort by name, Merge sort by qunatity. // Nah me got this
     // 
 
     //Merge sort
