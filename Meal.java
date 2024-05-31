@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Meal 
+public class Meal extends IngredientList 
 {
     private String name;
     private IngredientList ingredients;
@@ -16,8 +16,8 @@ public class Meal
     public void EditName(String newName)
     { this.name = newName; }
 
-    public void EditIngredients(int index, Ingredient newIngredient)
-    { ingredients.EditItem(index, newIngredient); }
+    // public void EditIngredients(int index, Ingredient newIngredient)
+    // { ingredients.EditItem(index, newIngredient); }
 
     public void EditMealPrep(int newMinutes)
     {
@@ -29,5 +29,9 @@ public class Meal
         return minutes;
     }
 
-
+    
+    public String getName()
+    {
+        return name;
+    }
 }
