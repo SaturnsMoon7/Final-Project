@@ -1,15 +1,13 @@
-import java.util.Scanner;
-
-public class Meal extends IngredientList 
+public class Meal  
 {
     private String name;
-    private IngredientList ingredients;
+    private IngredientList mealIngredients = new IngredientList();
     private int minutes;
 
-    public Meal(String name, IngredientList ingredients, int minutes)
+    public Meal(String name, IngredientList mealIngredients, int minutes)
     {
         this.name = name;
-        this.ingredients = ingredients;
+        this.mealIngredients = mealIngredients;
         this.minutes = minutes;
     }
 
@@ -20,18 +18,11 @@ public class Meal extends IngredientList
     // { ingredients.EditItem(index, newIngredient); }
 
     public void EditMealPrep(int newMinutes)
-    {
-        this.minutes =newMinutes;
-    }
+    { this.minutes =newMinutes; }
 
     public int setMealPrep()
-    {
-        return minutes;
-    }
-
+    { return minutes; }
     
     public String getName()
-    {
-        return name;
-    }
+    { return name; }
 }
