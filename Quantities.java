@@ -23,8 +23,9 @@ public class Quantities {
         this.amount = amount;
         this.unit = unit;
 
-        // TODO: base unit conversion needed!!!
-
+        //doing this to set the 'inGrams' variable for now
+        // this is kinda stupid lmao
+        convert(unit);
     }
 
     //Basic functions
@@ -53,17 +54,16 @@ public class Quantities {
     }
 
     public void convert(MeasurementUnit newUnit){
+        /* !!! NOTE: Conversions won't be the most accurate due to items having different densities !!! */
+
         //Check if custom unit
         if (customUnitReal){
             System.out.println("Cannot convert due to custom unit"); //this is an output
             return;
         }
 
-        //compare current unit with new unit
-        if(unit == newUnit){return;}
-        
         float[] conversionTable;
-
+        // Raitos use water as a base!!!
         // Order of conversion units: tsp   tbsp  grams  cups  litres
         switch (unit) {
             case tsp: conversionTable = new float[]{1, 1/3f, 5.69f, 1/48f, 1/202.9f}; break;
@@ -73,7 +73,6 @@ public class Quantities {
             case litres: conversionTable = new float[]{202.9f, 68.628f, 4.22675f, 1}; break;
             default: System.out.println("Unit: Conversion Table Error"); return;
         }
-        /* !!! NOTE: Conversions won't be the most accurate due to items having different densities !!! */
 
         //find the conversion ratio for that type
         int index;
@@ -84,10 +83,11 @@ public class Quantities {
             case grams: index = 2; break;
             case cups: index = 3; break;
             case litres: index = 4; break;
-            default: System.out.println("newUnit: Conversion Table Error"); return;
+            default: System.out.println("newUnit: Out of Index Error"); return;
         }
 
         //convert and set unit to new value
+        this.inGrams = this.amount * conversionTable[3];
         this.amount *= conversionTable[index];
         this.unit = newUnit;
 
