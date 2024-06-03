@@ -81,7 +81,11 @@ public class IngredientList extends ArrayList<Ingredient>
 
     public void displayIngredients() 
     {
-        System.out.println("Your available ingredients: ");
+        if (this.size() == 0)
+        { System.out.println("No current ingredients"); }
+        else
+        { System.out.println("Your available ingredients: "); }
+
         for (int i = 0; i < this.size(); i++)
         {
             String ingredientName = this.get(i).getName();

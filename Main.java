@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Main
+public class Main
 {
     public static void main(String[] args) 
     {
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
 
-        System.out.println("Welcome to the pantry");
+        System.out.println("Welcome to the Personalize Pantry Program");
         System.out.println("Begin by filling your pantry with avaiable ingredients!");
 
         initializeIngredientList(MainIngredients);
@@ -23,18 +23,23 @@ class Main
             if (mealList.size() == 0)
             { System.out.println("No saved meals"); }
             else 
-            { mealList.Display(); }
+            { mealList.displayMeals(); }
 
             System.out.println("Type the name of the meal or 'done' if you are finished");
             String name = getUserStr();
-            if (name.toLowerCase() == "done") {
+            if (name.toLowerCase().equals("done")) 
+            {
                 looping = false;
+                System.out.println();
                 break;
             }
 
             IngredientList mealIngredients = new IngredientList();
             initializeIngredientList(mealIngredients);
+
+
             int time = getUserInt();
+
             Meal newMeal = new Meal(name, mealIngredients, time);
             mealList.add(newMeal);
         }
@@ -45,11 +50,14 @@ class Main
         boolean looping = true;
         while (looping)
         {
-            ingredientList.Display(); 
-            System.out.println("Type the name of the meal or 'done' if you are finished");
+            ingredientList.displayIngredients(); 
+            System.out.println("Type the name of the ingredient or 'done' if you are finished");
             String name = getUserStr();
-            if (name.toLowerCase() == "done") {
+            
+            if (name.toLowerCase().equals("done")) 
+            {
                 looping = false;
+                System.out.println();
                 break;
             }
 
@@ -59,6 +67,7 @@ class Main
             Quantities quantity = new Quantities(amount, name);
             Ingredient newIngredient = new Ingredient(name, quantity);
             ingredientList.add(newIngredient);
+            System.out.println();
         }
     }
 
