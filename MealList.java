@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+
+//This class makes and sort meals.
 public class MealList extends ArrayList<Meal>
 {
     public void editMeal() {}
