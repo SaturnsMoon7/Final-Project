@@ -22,9 +22,51 @@ public class Main
             System.out.println("1. Manage ingredients");
             System.out.println("2. Manage meals");
             System.out.println("3. Exit program");
-
             int choice = getUserInt(1, 3);
+            System.out.println();
+
             if (choice == 1)
+            {
+                MainIngredients.displayIngredients();
+                System.out.println();
+
+                System.out.println("Choose an action from the following list:");
+                System.out.println("1. Add an ingredient");
+                System.out.println("2. Remove an ingredient");
+                System.out.println("3. Edit an ingredient");
+                System.out.println("4. Return to main menu");
+                int ingredientChoice = getUserInt(1, 4);
+                System.out.println();
+
+                if (choice == 1)
+                {
+                    System.out.println("Enter the name of the ingredient:");
+                    String ingredientName = getUserStr();
+                    System.out.println("Enter the amount of the ingredient:");
+                    Float ingredientAmount = getUserFloat();
+                    System.out.println("Enter the unit of the amount:");
+                    String ingredientUnit = getUserStr();
+
+                    Quantities ingredientQuantity = new Quantities(ingredientChoice, ingredientUnit);
+                    Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+
+                    MainIngredients.add(newIngredient);
+                }
+                else if (choice == 2)
+                {
+                    int index = getUserInt(1, MainIngredients.size());
+                    MainIngredients.remove(index);
+                }
+                else if (choice == 3)
+                {
+                    
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if (choice == 2)
             {
 
             }
