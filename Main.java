@@ -3,13 +3,16 @@ import java.util.Scanner;
 
 public class Main
 {
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) 
     {
+    
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
 
         System.out.println("Welcome to the Personalize Pantry Program.");
-        System.out.println();
+        String input = scn.nextLine();
+
 
         boolean looping = true;
         while (looping)
@@ -95,9 +98,9 @@ public class Main
         }
     }*/
 
+    //Gets any whole numbers.
     public static int getUserInt()
     {
-        Scanner scn = new Scanner(System.in);
 
         int input = 0;
 
@@ -109,10 +112,9 @@ public class Main
         return input;
     }
     
-    //Gets whole numbers with minimum and maximum.
+    //Gets whole numbers with minimum and maximum(restriction).
     public static int  getUserInt(int min, int max)
     {
-        Scanner scn = new Scanner(System.in);
 
         int userNumber = min - 1; // Set userNumber to be less than min, so that we enter the loop.
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
@@ -144,7 +146,6 @@ public class Main
     //Gets decimal numbers
     public static float getUserFloat()
     {
-        Scanner scn = new Scanner(System.in);
         float input = 0;
 
         boolean looping = true;
@@ -158,7 +159,6 @@ public class Main
     //Gets string/words/letters
     public static String getUserStr()
     {
-        Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
         return input;
     }
