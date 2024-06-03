@@ -5,12 +5,15 @@ public class Main
 {
     public static void main(String[] args) 
     {
+        //Create main objects
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
 
+        //Welcome message
         System.out.println("Welcome to the Personalize Pantry Program");
         System.out.println("Begin by filling your pantry with avaiable ingredients!");
 
+        //Initialize objects
         initializeIngredientList(MainIngredients);
         initializeMealList(MainMeals);
     }
