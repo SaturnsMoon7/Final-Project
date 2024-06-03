@@ -61,7 +61,7 @@ public class IngredientList extends ArrayList<Ingredient>
         }
     }
 
-    // TODO: Merge sort by name, Merge sort by qunatity. // Nah me got this
+    // TODO: Merge sort by name, Merge sort by qunatity. 
     //  ok nvm i have no clue what I am doing
 
     //Merge sort
