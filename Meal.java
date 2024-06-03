@@ -4,6 +4,8 @@ public class Meal
     private IngredientList mealIngredients = new IngredientList();
     private int minutes;
 
+    //Makes a makes a meal, with ingredients, and how long the meal will take for it to be cooked or made.
+    // Take information form the IngredientList class.
     public Meal(String name, IngredientList mealIngredients, int minutes)
     {
         this.name = name;

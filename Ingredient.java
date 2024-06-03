@@ -3,6 +3,7 @@ public class Ingredient
     private String name;
     private Quantities amount;
 
+    //Identify the Ingredient and the quantitties of it.
     Ingredient(String name, Quantities amount)
     {
         this.name = name;

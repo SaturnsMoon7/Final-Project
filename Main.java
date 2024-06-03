@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main
 {
-    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) 
     {
         //Create main objects
@@ -123,7 +122,7 @@ public class Main
     //Gets whole numbers with minimum and maximum(restriction).
     public static int  getUserInt(int min, int max)
     {
-
+        Scanner scn = new Scanner(System.in);
         int userNumber = min - 1; // Set userNumber to be less than min, so that we enter the loop.
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
 
@@ -166,6 +165,7 @@ public class Main
     //Gets string/words/letters
     public static String getUserStr()
     {
+        Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
         return input;
     }
