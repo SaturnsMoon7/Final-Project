@@ -62,7 +62,7 @@ public class IngredientList extends ArrayList<Ingredient>
     }
 
     // TODO: Merge sort by name, Merge sort by qunatity. // Nah me got this
-    // 
+    //  ok nvm i have no clue what I am doing
 
     //Merge sort
     private void sortList(ArrayList<Ingredient> listToSort, int start, int end){
@@ -82,7 +82,7 @@ public class IngredientList extends ArrayList<Ingredient>
     public void displayIngredients() 
     {
         if (this.size() == 0)
-        { System.out.println("No current ingredients"); }
+        { System.out.println("No current ingredients"); return;}
         else
         { System.out.println("Your available ingredients: "); }
 

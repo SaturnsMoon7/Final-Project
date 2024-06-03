@@ -5,11 +5,13 @@ public class Main
 {
     public static void main(String[] args) 
     {
+        //Create main objects
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
 
-        System.out.println("Welcome to the Personalize Pantry Program.");
-        System.out.println();
+        //Welcome message
+        System.out.println("Welcome to the Personalize Pantry Program");
+        System.out.println("Begin by filling your pantry with avaiable ingredients!");
 
         boolean looping = true;
         while (looping)
@@ -66,11 +68,13 @@ public class Main
             {
 
             }
-            else
+            else if (choice == 2)
             {
-                looping = false;
-                break;
+
             }
+            
+
+    
         }
         // System.out.println("Begin by filling your pantry with avaiable ingredients!");
         // System.out.println("Type 'done' when you are finished.");
@@ -78,12 +82,13 @@ public class Main
         // initializeMealList(MainMeals);
     }
 
-    // public static void initializeMealList(MealList mealList)
-    // {
-    //     boolean looping = true;
-    //     while (looping) 
-    //     {
-    //         if (mealList.size() == 0)
+    /* 
+        public static void initializeMealList(MealList mealList)
+        {
+            boolean looping = true;
+            while (looping) 
+            {
+                if (mealList.size() == 0)
     //         { System.out.println("No saved meals"); }
     //         else 
     //         { mealList.displayMeals(); }
@@ -129,10 +134,10 @@ public class Main
         
     //         Quantities quantity = new Quantities(amount, name);
     //         Ingredient newIngredient = new Ingredient(name, quantity);
-    //         ingredientList.add(newIngredient);
-    //         System.out.println();
-    //     }
-    // }
+            ingredientList.add(newIngredient);
+            System.out.println();
+        }
+    }*/
 
     public static int getUserInt()
     {
@@ -147,6 +152,7 @@ public class Main
         return input;
     }
     
+    //Gets whole numbers with minimum and maximum.
     public static int  getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
@@ -178,6 +184,7 @@ public class Main
         return userNumber;
     }
 
+    //Gets decimal numbers
     public static float getUserFloat()
     {
         Scanner scn = new Scanner(System.in);
@@ -190,10 +197,17 @@ public class Main
         return input;
     }
 
+    //Gets string/words/letters
     public static String getUserStr()
     {
         Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
         return input;
+    }
+    
+    public void clear(){
+    // Clear the console screen 
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush(); 
     }
 }
