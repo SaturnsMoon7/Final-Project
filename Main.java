@@ -11,7 +11,6 @@ public class Main
         System.out.println("Welcome to the Personalize Pantry Program.");
         System.out.println();
 
-<<<<<<< Updated upstream
         boolean looping = true;
         while (looping)
         {
@@ -19,58 +18,6 @@ public class Main
             System.out.println("1. Manage ingredients");
             System.out.println("2. Manage meals");
             System.out.println("3. Exit program");
-=======
-        initializeIngredientList(MainIngredients);
-        initializeMealList(MainMeals);
-    }
-
-    public static void initializeMealList(MealList mealList)
-    {
-        boolean looping = true;
-        while (looping) 
-        {
-            if (mealList.size() == 0)
-            { System.out.println("No saved meals"); }
-            else 
-            { mealList.displayMeals(); }
-
-            System.out.println("Type the name of the meal or 'done' if you are finished");
-            String name = getUserStr();
-            if (name.toLowerCase().equals("done")) 
-            {
-                looping = false;
-                System.out.println();
-                break;
-            }
-
-            IngredientList mealIngredients = new IngredientList();
-            initializeIngredientList(mealIngredients);
-
-
-            int time = getUserInt();
-
-            Meal newMeal = new Meal(name, mealIngredients, time);
-            mealList.add(newMeal);
-        }
-    }
-
-    
-    public static void initializeIngredientList(IngredientList ingredientList)
-    {
-        boolean looping = true;
-        while (looping)
-        {
-            ingredientList.displayIngredient(); 
-            System.out.println("Type the name of the ingredient or 'done' if you are finished");
-            String name = getUserStr();
-            
-            if (name.toLowerCase().equals("done")) 
-            {
-                looping = false;
-                System.out.println();
-                break;
-            }
->>>>>>> Stashed changes
 
             int choice = getUserInt(1, 3);
             if (choice == 1)
@@ -78,7 +25,10 @@ public class Main
 
             }
             else if (choice == 2)
-            [
+            {
+
+            }
+            
 
     
         }
@@ -88,12 +38,13 @@ public class Main
         // initializeMealList(MainMeals);
     }
 
-    // public static void initializeMealList(MealList mealList)
-    // {
-    //     boolean looping = true;
-    //     while (looping) 
-    //     {
-    //         if (mealList.size() == 0)
+    /* 
+        public static void initializeMealList(MealList mealList)
+        {
+            boolean looping = true;
+            while (looping) 
+            {
+                if (mealList.size() == 0)
     //         { System.out.println("No saved meals"); }
     //         else 
     //         { mealList.displayMeals(); }
@@ -139,10 +90,10 @@ public class Main
         
     //         Quantities quantity = new Quantities(amount, name);
     //         Ingredient newIngredient = new Ingredient(name, quantity);
-    //         ingredientList.add(newIngredient);
-    //         System.out.println();
-    //     }
-    // }
+            ingredientList.add(newIngredient);
+            System.out.println();
+        }
+    }*/
 
     public static int getUserInt()
     {
@@ -158,6 +109,7 @@ public class Main
         return input;
     }
     
+    //Gets whole numbers with minimum and maximum.
     public static int  getUserInt(int min, int max)
     {
         Scanner scn = new Scanner(System.in);
@@ -189,6 +141,7 @@ public class Main
         return userNumber;
     }
 
+    //Gets decimal numbers
     public static float getUserFloat()
     {
         Scanner scn = new Scanner(System.in);
@@ -202,6 +155,7 @@ public class Main
         return input;
     }
 
+    //Gets string/words/letters
     public static String getUserStr()
     {
         Scanner scn = new Scanner(System.in);
