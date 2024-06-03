@@ -6,13 +6,14 @@ public class Main
     static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) 
     {
-    
+        //Create main objects
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
 
-        System.out.println("Welcome to the Personalize Pantry Program.");
+        //Welcome message
+        System.out.println("Welcome to the Personalize Pantry Program");
+        System.out.println("Begin by filling your pantry with avaiable ingredients!");
         String input = scn.nextLine();
-
 
         boolean looping = true;
         while (looping)
@@ -105,8 +106,7 @@ public class Main
         int input = 0;
 
         boolean repeat = true;
-        while (repeat) 
-        {
+        while (repeat) { // Note: || means or
             repeat = false;
         }
         return input;
@@ -134,7 +134,7 @@ public class Main
             while (!scn.hasNextInt()) {
                 System.out.println("That is not an integer.\n");
                 System.out.print(prompt);
-                scn.nextLine(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
+                scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
             }
 
             // There is a valid integer, so grab that and store it in userNumber.
@@ -149,8 +149,7 @@ public class Main
         float input = 0;
 
         boolean looping = true;
-        while (looping) 
-        {
+        while (looping) {
             looping = false;
         }   
         return input;
@@ -161,5 +160,11 @@ public class Main
     {
         String input = scn.nextLine();
         return input;
+    }
+    
+    public void clear(){
+    // Clear the console screen 
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush(); 
     }
 }
