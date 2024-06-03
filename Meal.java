@@ -11,13 +11,13 @@ public class Meal
         this.minutes = minutes;
     }
 
-    public void EditName(String newName)
+    public void editName(String newName)
     { this.name = newName; }
 
     // public void EditIngredients(int index, Ingredient newIngredient)
     // { ingredients.EditItem(index, newIngredient); }
 
-    public void EditMealPrep(int newMinutes)
+    public void editMealPrep(int newMinutes)
     { this.minutes =newMinutes; }
 
     public int setMealPrep()

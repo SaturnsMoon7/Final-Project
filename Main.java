@@ -21,11 +21,9 @@ class Main
         while (looping) 
         {
             if (mealList.size() == 0)
-            {
-                System.out.println("No saved meals");
-            } else {
-                mealList.Display();
-            }
+            { System.out.println("No saved meals"); }
+            else 
+            { mealList.Display(); }
 
             System.out.println("Type the name of the meal or 'done' if you are finished");
             String name = getUserStr();
@@ -122,12 +120,8 @@ class Main
 
     public static String getUserStr()
     {
-        String input = "";
-        boolean looping = true;
-        while (looping) 
-        {
-            looping = false;
-        }   
+        Scanner scn = new Scanner(System.in);
+        String input = scn.nextLine();
         return input;
     }
 }

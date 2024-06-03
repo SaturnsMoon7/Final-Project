@@ -78,4 +78,14 @@ public class IngredientList extends ArrayList<Ingredient>
 
         //return
     }
+
+    public void displayIngredients() 
+    {
+        System.out.println("Your available ingredients: ");
+        for (int i = 0; i < this.size(); i++)
+        {
+            String ingredientName = this.get(i).getName();
+            System.out.println((i + 1) + ". " + ingredientName);
+        }
+    }
 }
