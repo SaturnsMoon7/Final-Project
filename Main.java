@@ -11,6 +11,7 @@ public class Main
         System.out.println("Welcome to the Personalize Pantry Program.");
         System.out.println();
 
+<<<<<<< Updated upstream
         boolean looping = true;
         while (looping)
         {
@@ -18,6 +19,58 @@ public class Main
             System.out.println("1. Manage ingredients");
             System.out.println("2. Manage meals");
             System.out.println("3. Exit program");
+=======
+        initializeIngredientList(MainIngredients);
+        initializeMealList(MainMeals);
+    }
+
+    public static void initializeMealList(MealList mealList)
+    {
+        boolean looping = true;
+        while (looping) 
+        {
+            if (mealList.size() == 0)
+            { System.out.println("No saved meals"); }
+            else 
+            { mealList.displayMeals(); }
+
+            System.out.println("Type the name of the meal or 'done' if you are finished");
+            String name = getUserStr();
+            if (name.toLowerCase().equals("done")) 
+            {
+                looping = false;
+                System.out.println();
+                break;
+            }
+
+            IngredientList mealIngredients = new IngredientList();
+            initializeIngredientList(mealIngredients);
+
+
+            int time = getUserInt();
+
+            Meal newMeal = new Meal(name, mealIngredients, time);
+            mealList.add(newMeal);
+        }
+    }
+
+    
+    public static void initializeIngredientList(IngredientList ingredientList)
+    {
+        boolean looping = true;
+        while (looping)
+        {
+            ingredientList.displayIngredient(); 
+            System.out.println("Type the name of the ingredient or 'done' if you are finished");
+            String name = getUserStr();
+            
+            if (name.toLowerCase().equals("done")) 
+            {
+                looping = false;
+                System.out.println();
+                break;
+            }
+>>>>>>> Stashed changes
 
             int choice = getUserInt(1, 3);
             if (choice == 1)
@@ -98,7 +151,8 @@ public class Main
         int input = 0;
 
         boolean repeat = true;
-        while (repeat) { // Note: || means or
+        while (repeat) 
+        {
             repeat = false;
         }
         return input;
@@ -126,7 +180,7 @@ public class Main
             while (!scn.hasNextInt()) {
                 System.out.println("That is not an integer.\n");
                 System.out.print(prompt);
-                scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
+                scn.nextLine(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
             }
 
             // There is a valid integer, so grab that and store it in userNumber.
@@ -141,7 +195,8 @@ public class Main
         float input = 0;
 
         boolean looping = true;
-        while (looping) {
+        while (looping) 
+        {
             looping = false;
         }   
         return input;
