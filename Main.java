@@ -136,4 +136,10 @@ public class Main
         String input = scn.nextLine();
         return input;
     }
+    
+    public void clear(){
+    // Clear the console screen 
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush(); 
+    }
 }
