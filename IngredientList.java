@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class IngredientList extends ArrayList<Ingredient>
 {
+    private int numberSpace = 3;
+    private int nameSpace = 19;
+    private int amountSpace = 11;
+
     // I <3 seperate constructors :)
     public void EditItem(int index, Quantities amountToChange)
     {
@@ -121,8 +125,12 @@ public class IngredientList extends ArrayList<Ingredient>
         else
         { 
             System.out.println("Your available ingredients: "); 
-            System.out.println(" #  | Name               || Amount     |");
-            System.out.println("----------------------------------------");
+            String numberStr = spaceBuilder("#", numberSpace);
+            String nameStr= spaceBuilder("Name", nameSpace);
+            String amountStr = spaceBuilder("Amount", amountSpace);
+            String titleStr = numberStr + "|" + nameStr + "||" + amountStr + "|";
+            System.out.println(titleStr);
+            System.out.println(symbolBuilder("-", titleStr.length()));
         }
 
         for (int i = 0; i < this.size(); i++)
@@ -130,19 +138,30 @@ public class IngredientList extends ArrayList<Ingredient>
             String ingredientName = this.get(i).getName();
             String ingredientAmount = this.get(i).getAmount().getDisplay();
 
-            System.out.print(" " + spaceBuilder(String.valueOf(i + 1), 3));
-            System.out.print("| " + spaceBuilder(ingredientName, 19));
-            System.out.print("|| " + spaceBuilder(ingredientAmount, 11) + "|");
+            String numberStr = spaceBuilder(String.valueOf(i + 1), numberSpace);
+            String nameStr = "|" + spaceBuilder(ingredientName, nameSpace);
+            String amoutnStr = "||" + spaceBuilder(ingredientAmount, amountSpace) + "|";
+            System.out.println(numberStr + nameStr + amoutnStr);
         }
         System.out.println();
     }
 
     public String spaceBuilder(String str, int length)
     {
+        str = " " + str;
         int initialLength = str.length();
         int difference = length - initialLength;
         for (int i = 0; i < difference; i++)
         { str += " "; }
+
+        return str;
+    }
+
+    public String symbolBuilder (String symbol, int length)
+    {
+        String str = "";
+        for (int i = 0; i < length; i++)
+        { str += symbol; }
         
         return str;
     }
