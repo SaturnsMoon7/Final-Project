@@ -70,19 +70,44 @@ public class IngredientList extends ArrayList<Ingredient>
     //  ok nvm i have no clue what I am doing
 
     //Merge sort
-    private void sortList(ArrayList<Ingredient> listToSort, int start, int end){
-        //Base case
+    // by amount
+    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) {
+        if (arrayList.size() == 2) {
+            return arrayList;
+        }
 
-        //Divide array
+        int mid = arrayList.size() / 2;
+        ArrayList<Ingredient> left = new ArrayList<Ingredient>(arrayList.subList(0, mid));
+        ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
 
-        //Merge first part
-        
-        //Merge second part
+        // Recursively sort the left and right halves
+        left = sortList(left);
+        right = sortList(right);
 
-        //merge both
-
-        //return
+        // Merge the sorted halves
+        return mergeList(left, right);
     }
+
+    private ArrayList<Ingredient> mergeList(ArrayList<Ingredient> left, ArrayList<Ingredient> right) {
+        if (left.isEmpty()) {
+            return right;
+        }
+        if (right.isEmpty()) {
+            return left;
+        }
+
+        ArrayList<Ingredient> merged = new ArrayList<>();
+        if (left.get(0).getAmount().getGrams() <= right.get(0).getAmount().getGrams()) {
+            merged.add(left.remove(0));
+            merged.addAll(mergeList(left, right));
+        } else {
+            merged.add(right.remove(0));
+            merged.addAll(mergeList(left, right));
+        }
+
+        return merged;
+    }
+        
 
     public void displayIngredients() 
     {

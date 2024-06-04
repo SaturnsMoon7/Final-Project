@@ -12,7 +12,7 @@ public class Main
         //Welcome message
         System.out.println("Welcome to the Personalize Pantry Program"+
                            "\nBegin by filling your pantry with avaiable ingredients!");
-        String input = scn.nextLine();
+       // String input = scn.nextLine();
 
         boolean looping = true;
         while (looping)
@@ -47,6 +47,8 @@ public class Main
         System.out.println();
 
         // TODO: Return to this menu instead of main menu
+        //       Does not display "Remove" and "Edit" if list 
+        //       is empty
         System.out.println("Choose an action from the following list:");
         System.out.println("1. Add an ingredient");
         System.out.println("2. Remove an ingredient");
@@ -109,11 +111,12 @@ public class Main
     //Gets any whole numbers.
     public static int getUserInt()
     {
-
+        Scanner scn = new Scanner(System.in);
         int input = 0;
 
         boolean repeat = true;
-        while (repeat) { // Note: || means or
+        while (repeat) { 
+            input = scn.nextInt();
             repeat = false;
         }
         return input;

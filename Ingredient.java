@@ -35,4 +35,9 @@ public class Ingredient
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'add'");
     }
+
+    public Quantities getAmount()
+    {
+        return amount;
+    }
 }
