@@ -69,24 +69,49 @@ public class IngredientList extends ArrayList<Ingredient>
         }
     }
 
-    // TODO: Merge sort by name, Merge sort by qunatity. // Nah me got this
+    // TODO: Merge sort by name, Merge sort by qunatity. 
     //  ok nvm i have no clue what I am doing
 
     //Merge sort
-    private void sortList(ArrayList<Ingredient> listToSort, int start, int end)
+    // by amount
+    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) 
     {
-        //Base case
+        if (arrayList.size() == 2) 
+        {
+            return arrayList;
+        }
+        int mid = arrayList.size() / 2;
+        ArrayList<Ingredient> left = new ArrayList<Ingredient>(arrayList.subList(0, mid));
+        ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
 
-        //Divide array
+        // Recursively sort the left and right halves
+        left = sortList(left);
+        right = sortList(right);
 
-        //Merge first part
-        
-        //Merge second part
-
-        //merge both
-
-        //return
+        // Merge the sorted halves
+        return mergeList(left, right);
     }
+
+    private ArrayList<Ingredient> mergeList(ArrayList<Ingredient> left, ArrayList<Ingredient> right) {
+        if (left.isEmpty()) {
+            return right;
+        }
+        if (right.isEmpty()) {
+            return left;
+        }
+
+        ArrayList<Ingredient> merged = new ArrayList<>();
+        if (left.get(0).getAmount().getGrams() <= right.get(0).getAmount().getGrams()) {
+            merged.add(left.remove(0));
+            merged.addAll(mergeList(left, right));
+        } else {
+            merged.add(right.remove(0));
+            merged.addAll(mergeList(left, right));
+        }
+
+        return merged;
+    }
+        
 
     public void displayIngredients() 
     {
