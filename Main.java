@@ -30,7 +30,7 @@ public class Main
                     continue;
             
                 case 2: // Manage Meals
-                    ManageMeals();
+                    ManageMeals(MainMeals);
                     continue;
 
                 case 3: // Exit Program
@@ -40,7 +40,8 @@ public class Main
         }
     }
 
-    public static void ManageIngredients(IngredientList MainIngredients){
+    public static void ManageIngredients(IngredientList MainIngredients)
+    {
         int index;
 
         boolean looping = true;
@@ -120,8 +121,59 @@ public class Main
         }
     }
 
-    static void ManageMeals(){
+    static void ManageMeals(MealList MainMeals){
+        MainMeals.displayMeals();
+        System.out.println();
+        System.out.println("Choose an action from the following list:");
+        System.out.println("1. Add a meal");
+        System.out.println("2. Remove a meal");
+        System.out.println("3. Edit a meal");
+        System.out.println("4. Return to main menu");
 
+        int choice = getUserInt(1, 4);
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the name of the meal");
+                String mealName = getUserStr();
+
+                IngredientList newIngredientList = new IngredientList();
+
+                int loops = 1; // Position + 1 of new ingredient
+                boolean looping = true;
+                while (looping) 
+                {
+                    newIngredientList.displayIngredients();
+                    System.out.println("Enter the name of ingredient #" + loops);
+                    System.out.println("or type 'done' if finished.");
+                    String ingredientName = getUserStr();
+                    if (ingredientName.toLowerCase().equals("done"))
+                    {
+                        looping = false;
+                        break;
+                    }
+
+                    // Ingredient quantity
+                    System.out.println("Enter the amount");
+                    float amount = getUserFloat();
+                    System.out.println("Enter the unit of the amount");
+                    String unit = getUserStr();
+                    Quantities newQuantity = new Quantities(amount, unit);
+
+                    // Create a new ingredient object
+                    Ingredient newIngredient = new Ingredient(ingredientName, newQuantity);
+                    newIngredientList.add(newIngredient); // Add to meal ingredientList
+                    loops++;
+                }
+
+                int prepTime = getUserInt();
+                Meal newMeal = new Meal(mealName, newIngredientList, prepTime);
+            case 2:
+
+            case 3:
+
+            case 4:
+        }
     }
 
     static void Quit(){
@@ -171,7 +223,8 @@ public class Main
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
 
         boolean repeat = false;
-        while (userNumber < min || userNumber > max) { // Note: || means or
+        while (userNumber < min || userNumber > max) 
+        { 
             // Modify the prompt based on whether we are repeating or not.
             if (repeat) {
                 System.out.println("Number must be at least " + min + " and at most " + max + ".\n");
@@ -197,12 +250,8 @@ public class Main
     //Gets decimal numbers
     public static float getUserFloat()
     {
-        float input = 0;
-
-        boolean looping = true;
-        while (looping) {
-            looping = false;
-        }   
+        Scanner scn = new Scanner(System.in);
+        float input = scn.nextFloat();
         return input;
     }
 
