@@ -40,7 +40,8 @@ public class Main
         }
     }
 
-    public static void ManageIngredients(IngredientList MainIngredients){
+    public static void ManageIngredients(IngredientList MainIngredients)
+    {
         int index;
         clear();
         MainIngredients.displayIngredients();
@@ -181,7 +182,8 @@ public class Main
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
 
         boolean repeat = false;
-        while (userNumber < min || userNumber > max) { // Note: || means or
+        while (userNumber < min || userNumber > max) 
+        { 
             // Modify the prompt based on whether we are repeating or not.
             if (repeat) {
                 System.out.println("Number must be at least " + min + " and at most " + max + ".\n");

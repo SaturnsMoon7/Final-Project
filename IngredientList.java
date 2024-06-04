@@ -7,6 +7,7 @@ public class IngredientList extends ArrayList<Ingredient>
     {
         this.get(index).changeAmount(amountToChange);
     }
+
     public void EditItem(int index, String nameToChangeTo)
     {
         this.get(index).changeName(nameToChangeTo);
@@ -44,11 +45,13 @@ public class IngredientList extends ArrayList<Ingredient>
                 //finally found the item
                 return mid;
             }
+
             else if(currentMid.compareTo(ItemToSerchFor) > 0)
             {
                 //ingredientlist at mid is greater than item
                 start = mid + 1;
             }
+
             else if(currentMid.compareTo(ItemToSerchFor) < 0)
             {
                 //ingredientlist at mid is less than item
@@ -71,11 +74,12 @@ public class IngredientList extends ArrayList<Ingredient>
 
     //Merge sort
     // by amount
-    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) {
-        if (arrayList.size() == 2) {
+    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) 
+    {
+        if (arrayList.size() == 2) 
+        {
             return arrayList;
         }
-
         int mid = arrayList.size() / 2;
         ArrayList<Ingredient> left = new ArrayList<Ingredient>(arrayList.subList(0, mid));
         ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
@@ -112,9 +116,14 @@ public class IngredientList extends ArrayList<Ingredient>
     public void displayIngredients() 
     {
         if (this.size() == 0)
-        { System.out.println("No current ingredients"); return;}
+        { 
+            System.out.println("No current ingredients"); return;
+        }
+
         else
-        { System.out.println("Your available ingredients: "); }
+        { 
+            System.out.println("Your available ingredients: "); 
+        }
 
         for (int i = 0; i < this.size(); i++)
         {
