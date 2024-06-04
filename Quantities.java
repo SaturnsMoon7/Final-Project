@@ -115,4 +115,10 @@ public class Quantities {
         System.out.println(customUnitReal ? amount + " " + customUnit : amount + " " + unit);
     }
 
+    public String getDisplay()
+    {
+        String str = customUnitReal ? amount + " " + customUnit : amount + " " + unit;
+        return str;
+    }
+
 }

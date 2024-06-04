@@ -116,19 +116,34 @@ public class IngredientList extends ArrayList<Ingredient>
     public void displayIngredients() 
     {
         if (this.size() == 0)
-        { 
-            System.out.println("No current ingredients"); return;
-        }
+        { System.out.println("No available ingredients"); return; }
 
         else
         { 
             System.out.println("Your available ingredients: "); 
+            System.out.println(" #  | Name               || Amount     |");
+            System.out.println("----------------------------------------");
         }
 
         for (int i = 0; i < this.size(); i++)
         {
             String ingredientName = this.get(i).getName();
-            System.out.println((i + 1) + ". " + ingredientName);
+            String ingredientAmount = this.get(i).getAmount().getDisplay();
+
+            System.out.print(" " + spaceBuilder(String.valueOf(i + 1), 3));
+            System.out.print("| " + spaceBuilder(ingredientName, 19));
+            System.out.print("|| " + spaceBuilder(ingredientAmount, 11) + "|");
         }
+        System.out.println();
+    }
+
+    public String spaceBuilder(String str, int length)
+    {
+        int initialLength = str.length();
+        int difference = length - initialLength;
+        for (int i = 0; i < difference; i++)
+        { str += " "; }
+        
+        return str;
     }
 }
