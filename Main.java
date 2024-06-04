@@ -50,24 +50,29 @@ public class Main
 
                     MainIngredients.add(newIngredient);
                 }
+                
                 else if (choice == 2)
                 {
                     int index = getUserInt(1, MainIngredients.size());
                     MainIngredients.remove(index);
                 }
+
                 else if (choice == 3)
                 {
                     
                 }
+
                 else
                 {
                     return;
                 }
             }
+
             else if (choice == 2)
             {
 
             }
+
             else if (choice == 2)
             {
 
@@ -83,60 +88,60 @@ public class Main
     }
 
     /* 
-        public static void initializeMealList(MealList mealList)
+    public static void initializeMealList(MealList mealList)
+    {
+        boolean looping = true;
+        while (looping) 
         {
-            boolean looping = true;
-            while (looping) 
+            if (mealList.size() == 0)
+            { System.out.println("No saved meals"); }
+            else 
+            { mealList.displayMeals(); }
+
+            System.out.println("Type the name of the meal or 'done' if you are finished");
+            String name = getUserStr();
+            if (name.toLowerCase().equals("done")) 
             {
-                if (mealList.size() == 0)
-    //         { System.out.println("No saved meals"); }
-    //         else 
-    //         { mealList.displayMeals(); }
+                looping = false;
+                System.out.println();
+                break;
+            }
 
-    //         System.out.println("Type the name of the meal or 'done' if you are finished");
-    //         String name = getUserStr();
-    //         if (name.toLowerCase().equals("done")) 
-    //         {
-    //             looping = false;
-    //             System.out.println();
-    //             break;
-    //         }
-
-    //         IngredientList mealIngredients = new IngredientList();
-    //         initializeIngredientList(mealIngredients);
+            IngredientList mealIngredients = new IngredientList();
+            initializeIngredientList(mealIngredients);
 
 
-    //         int time = getUserInt();
+            int time = getUserInt();
 
-    //         Meal newMeal = new Meal(name, mealIngredients, time);
-    //         mealList.add(newMeal);
-    //     }
-    // }
-
-    // public static void initializeIngredientList(IngredientList ingredientList)
-    // {
-    //     boolean looping = true;
-    //     while (looping)
-    //     {
-    //         ingredientList.displayIngredients(); 
-    //         System.out.println("Type the name of the ingredient or 'done' if you are finished");
-    //         String name = getUserStr();
-            
-    //         if (name.toLowerCase().equals("done")) 
-    //         {
-    //             looping = false;
-    //             System.out.println();
-    //             break;
-    //         }
-
-    //         System.out.println("Type the amount");
-    //         float amount = getUserFloat();
-        
-    //         Quantities quantity = new Quantities(amount, name);
-    //         Ingredient newIngredient = new Ingredient(name, quantity);
-            ingredientList.add(newIngredient);
-            System.out.println();
+            Meal newMeal = new Meal(name, mealIngredients, time);
+            mealList.add(newMeal);
         }
+    }
+
+    public static void initializeIngredientList(IngredientList ingredientList)
+    {
+        boolean looping = true;
+        while (looping)
+        {
+            ingredientList.displayIngredients(); 
+            System.out.println("Type the name of the ingredient or 'done' if you are finished");
+            String name = getUserStr();
+        
+            if (name.toLowerCase().equals("done")) 
+            {
+                looping = false;
+                System.out.println();
+                break;
+            }
+
+        System.out.println("Type the amount");
+        float amount = getUserFloat();
+    
+        Quantities quantity = new Quantities(amount, name);
+        Ingredient newIngredient = new Ingredient(name, quantity);
+        ingredientList.add(newIngredient);
+        System.out.println();
+    }
     }*/
 
     //Gets any whole numbers.
@@ -146,7 +151,8 @@ public class Main
         int input = 0;
 
         boolean repeat = true;
-        while (repeat) { // Note: || means or
+        while (repeat) 
+        { 
             repeat = false;
         }
         return input;
@@ -160,7 +166,8 @@ public class Main
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
 
         boolean repeat = false;
-        while (userNumber < min || userNumber > max) { // Note: || means or
+        while (userNumber < min || userNumber > max) 
+        { 
             // Modify the prompt based on whether we are repeating or not.
             if (repeat) {
                 System.out.println("Number must be at least " + min + " and at most " + max + ".\n");

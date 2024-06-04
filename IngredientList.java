@@ -7,6 +7,7 @@ public class IngredientList extends ArrayList<Ingredient>
     {
         this.get(index).changeAmount(amountToChange);
     }
+
     public void EditItem(int index, String nameToChangeTo)
     {
         this.get(index).changeName(nameToChangeTo);
@@ -44,11 +45,13 @@ public class IngredientList extends ArrayList<Ingredient>
                 //finally found the item
                 return mid;
             }
+
             else if(currentMid.compareTo(ItemToSerchFor) > 0)
             {
                 //ingredientlist at mid is greater than item
                 start = mid + 1;
             }
+
             else if(currentMid.compareTo(ItemToSerchFor) < 0)
             {
                 //ingredientlist at mid is less than item
@@ -70,7 +73,8 @@ public class IngredientList extends ArrayList<Ingredient>
     //  ok nvm i have no clue what I am doing
 
     //Merge sort
-    private void sortList(ArrayList<Ingredient> listToSort, int start, int end){
+    private void sortList(ArrayList<Ingredient> listToSort, int start, int end)
+    {
         //Base case
 
         //Divide array
@@ -87,9 +91,14 @@ public class IngredientList extends ArrayList<Ingredient>
     public void displayIngredients() 
     {
         if (this.size() == 0)
-        { System.out.println("No current ingredients"); return;}
+        { 
+            System.out.println("No current ingredients"); return;
+        }
+
         else
-        { System.out.println("Your available ingredients: "); }
+        { 
+            System.out.println("Your available ingredients: "); 
+        }
 
         for (int i = 0; i < this.size(); i++)
         {
