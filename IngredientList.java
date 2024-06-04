@@ -116,6 +116,10 @@ public class IngredientList extends ArrayList<Ingredient>
         return merged;
     }
         
+    public void displayIngredient(int index){
+        String ingredientName = this.get(index).getName();
+        System.out.println(ingredientName);
+    }
 
     public void displayIngredients() 
     {

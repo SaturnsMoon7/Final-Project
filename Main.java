@@ -18,12 +18,12 @@ public class Main
         boolean looping = true;
         while (looping)
         {
-            System.out.println("Choose an action from the following list:");
-            System.out.println("1. Manage ingredients");
-            System.out.println("2. Manage meals");
-            System.out.println("3. Exit program");
+            System.out.println("Choose an action from the following list:"
+                            + "\n1. Manage ingredients"
+                            + "\n2. Manage meals"
+                            + "\n3. Exit program");
+
             int choice = getUserInt(1, 3);
-            System.out.println();
 
             switch (choice) {
                 case 1: // Manage Ingredients
@@ -31,7 +31,7 @@ public class Main
                     continue;
             
                 case 2: // Manage Meals
-                    ManageMeals(MainMeals);
+                    ManageMeals();
                     continue;
 
                 case 3: // Exit Program
@@ -41,124 +41,160 @@ public class Main
         }
     }
 
-    public static void ManageIngredients(IngredientList MainIngredients)
-    {
+    public static void ManageIngredients(IngredientList MainIngredients){
         int index;
-        clear();
-        MainIngredients.displayIngredients();
-        System.out.println();
 
-        // TODO: Return to this menu instead of main menu
-        //       Does not display "Remove" and "Edit" if list 
-        //       is empty
-        System.out.println("Choose an action from the following list:");
-        System.out.println("1. Add an ingredient");
-        System.out.println("2. Remove an ingredient");
-        System.out.println("3. Edit an ingredient");
-        System.out.println("4. Return to main menu");
-        
-        int choice = getUserInt(1, 4);
-        clear();
+        boolean looping = true;
+        while (looping){
+            clear();
+            MainIngredients.displayIngredients();
+            System.out.println();
 
-        switch (choice) {
-            case 1:
-            // TODO: All angredients get asked for and getUser... doesn;t work
-                System.out.println("1. Add an ingredient\n");
-                System.out.println("Enter the name of the ingredient:");
-                String ingredientName = getUserStr();
-                System.out.println("\nEnter the amount of the ingredient:");
-                Float ingredientAmount = getUserFloat();
+            String actionlist =  "Choose an action from the following list:"
+                                + "\n1. Add an ingredient";
 
-                //TODO: ENUM UNIT
-                System.out.println("\nEnter the unit of the amount:");
-                String ingredientUnit = getUserStr();
+            if(MainIngredients.size() > 0){
+                actionlist += "\n2. Remove an ingredient"
+                            + "\n3. Edit an ingredient"
+                            + "\n4. Return to main menu";
+            }
+            else{
+                // TODO: ActionList is always option 4 even when not displaying edit and remove. should fix maybe
+                actionlist += "\n4. Return to main menu";
+            }
+            
+            System.out.println(actionlist);
+            int choice = getUserInt(1, 4);
+            clear();
 
-                Quantities ingredientQuantity = new Quantities(ingredientAmount, ingredientUnit);
-                Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+            switch (choice) {
+                case 1:
+                // TODO: All angredients get asked for and getUser... doesnt work
+                //     - get userfloat doesnt work resulting the amount being skipped
 
-                System.out.println("Ingredient Added");
-                MainIngredients.add(newIngredient);
-                break;
+                    System.out.println("1. Add an ingredient\n");
 
-            case 2:
-                System.out.println("2. Remove an Ingredient\n");
+                    // TODO: Going to make a getIngredientDetials function to be reused in editIngredients()
 
-                // TODO: Display all ingredients with index here.
+                    //Gets the name 
+                    System.out.println("Enter the name of the ingredient:");
+                    String ingredientName = getUserStr();
 
-                System.out.println("Enter the index of the ingredient you want to remove");
-                index = getUserInt(1, MainIngredients.size());
-                MainIngredients.remove(index);
+                    //Gets the amount
+                    System.out.println("\nEnter the amount of the ingredient:");
+                    Float ingredientAmount = getUserFloat();
 
-            case 3:
-                // TODO: Display all ingredients with index here.
-                System.out.println("Enter the index of the ingredient you want to edit");
-                index = getUserInt(1, MainIngredients.size());
+                    //Gets the unit
+                    System.out.println("\nEnter the unit of the amount:");
 
-            case 4:
-                System.out.println("Returning");
-                return;
+                    MeasurementUnit ingredientUnit = getMeasurementUnit();
+
+                    //Adds the information to the list
+                    Quantities ingredientQuantity = new Quantities(ingredientAmount, ingredientUnit);
+                    Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+
+                    System.out.println("Ingredient Added");
+                    MainIngredients.add(newIngredient);
+                    break;
+
+                case 2:
+                    //Header
+                    System.out.println("2. Remove an Ingredient\nAll Ingredients:");
+
+                    //Display all ingredients
+                    MainIngredients.displayIngredients();
+
+                    //Gets user input and removes the index
+                    System.out.println("\nEnter the index of the ingredient you want to remove");
+                    index = getUserInt(1, MainIngredients.size());
+                    MainIngredients.remove(index);
+
+                    break;
+
+                case 3:
+                    editIngredients(MainIngredients);
+
+                    
+
+                    break;
+
+                case 4:
+                    //Returns to the main menu
+                    System.out.println("Returning");
+                    wait(100);
+                    return;
+            }
         }
     }
 
-    static void ManageMeals(MealList MainMeals){
-        MainMeals.displayMeals();
-        System.out.println();
-        System.out.println("Choose an action from the following list:");
-        System.out.println("1. Add a meal");
-        System.out.println("2. Remove a meal");
-        System.out.println("3. Edit a meal");
-        System.out.println("4. Return to main menu");
+    static void ManageMeals(){
 
-        int choice = getUserInt(1, 4);
-
-        switch (choice) {
-            case 1:
-                System.out.println("Enter the name of the meal");
-                String mealName = getUserStr();
-
-                IngredientList newIngredientList = new IngredientList();
-
-                int loops = 1; // Position + 1 of new ingredient
-                boolean looping = true;
-                while (looping) 
-                {
-                    newIngredientList.displayIngredients();
-                    System.out.println("Enter the name of ingredient #" + loops);
-                    System.out.println("or type 'done' if finished.");
-                    String ingredientName = getUserStr();
-                    if (ingredientName.toLowerCase().equals("done"))
-                    {
-                        looping = false;
-                        break;
-                    }
-
-                    // Ingredient quantity
-                    System.out.println("Enter the amount");
-                    float amount = getUserFloat();
-                    System.out.println("Enter the unit of the amount");
-                    String unit = getUserStr();
-                    Quantities newQuantity = new Quantities(amount, unit);
-
-                    // Create a new ingredient object
-                    Ingredient newIngredient = new Ingredient(ingredientName, newQuantity);
-                    newIngredientList.add(newIngredient); // Add to meal ingredientList
-                    loops++;
-                }
-
-                int prepTime = getUserInt();
-                Meal newMeal = new Meal(mealName, newIngredientList, prepTime);
-            case 2:
-
-            case 3:
-
-            case 4:
-        }
     }
 
     static void Quit(){
         clear();
         System.out.println("Thanks for using our Kitchen Program!");
         System.exit(0);
+    }
+
+    //Functions in ManageIngredients()
+    private static void editIngredients(IngredientList MainIngredients){
+        //Header
+        System.out.println("2. Edit an Ingredient\nAll Ingredients:");
+
+        MainIngredients.displayIngredients();
+
+        System.out.println("\nEnter the index of the ingredient you want to edit");
+        int index = getUserInt(1, MainIngredients.size());
+
+        // TODO: Editing an item is a lot of work lmao
+        System.out.println("Editing: ");
+        MainIngredients.displayIngredient(index);
+
+        System.out.println("What do you want to edit?"
+                        + "\n1. Name"
+                        + "\n2. Amount"
+                        + "\n3. The entire Ingredient");
+
+        int choice = getUserInt(1,3);
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the new name:");
+                String newName = getUserStr();
+                MainIngredients.EditItem(index, newName);
+                break;
+            
+            case 2:
+            // TODO: Amount cant be a flout because it has to be a quantity
+                System.out.println("Enter the new amount:");
+                float newAmount = getUserFloat();
+                MainIngredients.EditItem(index, newAmount);
+                break;
+
+            case 3:
+                //GetIngredient Detials
+                break;
+        }
+    }
+
+    public static void displayUnits(){
+        System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
+    }
+
+    public static MeasurementUnit getMeasurementUnit(){
+        System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
+
+        int choice = getUserInt(1, 5);
+
+        switch (choice) {
+            case 1: return MeasurementUnit.tsp;
+            case 2: return MeasurementUnit.tbsp;
+            case 3: return MeasurementUnit.grams;
+            case 4: return MeasurementUnit.cups;
+            case 5: return MeasurementUnit.litres;
+            default:return null;
+        }
     }
 
     //Gets any whole numbers.
@@ -183,8 +219,7 @@ public class Main
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
 
         boolean repeat = false;
-        while (userNumber < min || userNumber > max) 
-        { 
+        while (userNumber < min || userNumber > max) { // Note: || means or
             // Modify the prompt based on whether we are repeating or not.
             if (repeat) {
                 System.out.println("Number must be at least " + min + " and at most " + max + ".\n");
@@ -210,8 +245,12 @@ public class Main
     //Gets decimal numbers
     public static float getUserFloat()
     {
-        Scanner scn = new Scanner(System.in);
-        float input = scn.nextFloat();
+        float input = 0;
+
+        boolean looping = true;
+        while (looping) {
+            looping = false;
+        }   
         return input;
     }
 
@@ -227,5 +266,17 @@ public class Main
     // Clear the console screen 
     System.out.print("\033[H\033[2J"); 
     System.out.flush(); 
+    }
+
+    private static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

@@ -1,11 +1,12 @@
+enum MeasurementUnit{
+    tsp,
+    tbsp,
+    grams,
+    cups,
+    litres,
+}
+
 public class Quantities {
-    public enum MeasurementUnit{
-        tsp,
-        tbsp,
-        grams,
-        cups,
-        litres,
-    }
 
     // Premade units
     private float amount;
