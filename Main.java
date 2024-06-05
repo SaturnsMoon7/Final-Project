@@ -72,19 +72,11 @@ public class Main
                 // TODO: All angredients get asked for and getUser... doesnt work
                 //     - get userfloat doesnt work resulting the amount being skipped
 
+                    //Header
                     System.out.println("1. Add an ingredient\n");
 
-                    // TODO: Going to make a getIngredientDetials function to be reused in editIngredients()
-
-                    //Gets the name 
-                    System.out.println("Enter the name of the ingredient:");
-                    String ingredientName = getUserStr();
-
-                    //Gets the amount
-                    Quantities ingredientQuantity = getAmount();
-
-                    //Adds the information to the list
-                    Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+                    //Gets Ingredient
+                    Ingredient newIngredient = getIngredient();
 
                     System.out.println("Ingredient Added");
                     MainIngredients.add(newIngredient);
@@ -106,9 +98,6 @@ public class Main
 
                 case 3:
                     editIngredients(MainIngredients);
-
-                    
-
                     break;
 
                 case 4:
@@ -159,14 +148,17 @@ public class Main
                 break;
             
             case 2:
-            // TODO: Amount cant be a flout because it has to be a quantity
                 System.out.println("Enter the new amount:");
-                float newAmount = getUserFloat();
+                Quantities newAmount = getAmount();
                 MainIngredients.EditItem(index, newAmount);
                 break;
 
             case 3:
-                //GetIngredient Detials
+                //Gets information
+                Ingredient newIngredient = getIngredient();
+
+                //Edits item
+                MainIngredients.EditItem(index, newIngredient);
                 break;
         }
     }
@@ -183,6 +175,17 @@ public class Main
         //Adds the information to the list
         Quantities ingredientQuantity = new Quantities(ingredientAmount, ingredientUnit);
         return ingredientQuantity;
+    }
+
+    private static Ingredient getIngredient(){
+        //Gets the name 
+        System.out.println("Enter the name of the ingredient:");
+        String ingredientName = getUserStr();
+
+        //Gets the amount
+        Quantities ingredientQuantity = getAmount();
+        Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+        return newIngredient;
     }
 
     public static void displayUnits(){
