@@ -28,4 +28,8 @@ public class Meal
     
     public String getName()
     { return name; }
+
+    public int getTime() {
+        return minutes;
+    }
 }

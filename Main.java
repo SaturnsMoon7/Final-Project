@@ -135,10 +135,21 @@ public class Main
 
             switch (choice) {
                 case 1:
+                    System.out.println("Enter the name of the meal");
+                    String name = getUserStr();
+
+                    IngredientList mealIngredients = new IngredientList();
+                    ManageIngredients(mealIngredients);
+
+                    System.out.println("Enter the prep time of the meal");
+                    int time = getUserInt();
+                    Meal newMeal = new Meal(name, mealIngredients, time);
+                    MainMeals.add(newMeal);
                 case 2:
                 case 3:
                 case 4:
                 case 5:
+                    break;
             }
         }    
     }
