@@ -81,16 +81,9 @@ public class Main
                     String ingredientName = getUserStr();
 
                     //Gets the amount
-                    System.out.println("\nEnter the amount of the ingredient:");
-                    Float ingredientAmount = getUserFloat();
-
-                    //Gets the unit
-                    System.out.println("\nEnter the unit of the amount:");
-
-                    MeasurementUnit ingredientUnit = getMeasurementUnit();
+                    Quantities ingredientQuantity = getAmount();
 
                     //Adds the information to the list
-                    Quantities ingredientQuantity = new Quantities(ingredientAmount, ingredientUnit);
                     Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
 
                     System.out.println("Ingredient Added");
@@ -178,9 +171,24 @@ public class Main
         }
     }
 
+    private static Quantities getAmount(){
+        System.out.println("\nEnter the amount of the ingredient:");
+        Float ingredientAmount = getUserFloat();
+
+        //Gets the unit
+        System.out.println("\nEnter the unit of the amount:");
+
+        MeasurementUnit ingredientUnit = getMeasurementUnit();
+
+        //Adds the information to the list
+        Quantities ingredientQuantity = new Quantities(ingredientAmount, ingredientUnit);
+        return ingredientQuantity;
+    }
+
     public static void displayUnits(){
         System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
     }
+
 
     public static MeasurementUnit getMeasurementUnit(){
         System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
