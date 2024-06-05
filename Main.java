@@ -256,12 +256,8 @@ public class Main
     //Gets decimal numbers
     public static float getUserFloat()
     {
-        float input = 0;
-
-        boolean looping = true;
-        while (looping) {
-            looping = false;
-        }   
+        Scanner scn = new Scanner(System.in);
+        float input = scn.nextFloat();
         return input;
     }
 
