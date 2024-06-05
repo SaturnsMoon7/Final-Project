@@ -287,6 +287,14 @@ public class Main
     public static float getUserFloat()
     {
         Scanner scn = new Scanner(System.in);
+
+        // Loop as long as an integer has NOT been inputted.
+        while (!scn.hasNextFloat()) {
+            System.out.println("That is not an float.\n");
+            scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
+        }
+
+
         float input = scn.nextFloat();
         return input;
     }
