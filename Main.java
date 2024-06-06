@@ -59,7 +59,6 @@ public class Main
                             + "\n4. Return to main menu";
             }
             else{
-                // TODO: ActionList is always option 4 even when not displaying edit and remove. should fix maybe
                 actionlist += "\n4. Return to main menu";
             }
             
@@ -69,9 +68,6 @@ public class Main
 
             switch (choice) {
                 case 1:
-                // TODO: All angredients get asked for and getUser... doesnt work
-                //     - get userfloat doesnt work resulting the amount being skipped
-
                     //Header
                     System.out.println("1. Add an ingredient\n");
 
@@ -117,6 +113,14 @@ public class Main
         clear();
         System.out.println("Thanks for using our Kitchen Program!");
         System.exit(0);
+    }
+
+    private static void addMeal(){
+
+    }
+
+    private static void removeIngredient(){
+        
     }
 
     //Functions in ManageIngredients()
