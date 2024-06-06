@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Main
 {
     public static void main(String[] args) 
@@ -67,35 +66,9 @@ public class Main
             clear();
 
             switch (choice) {
-                case 1:
-                    //Header
-                    System.out.println("1. Add an ingredient\n");
-
-                    //Gets Ingredient
-                    Ingredient newIngredient = getIngredient();
-
-                    System.out.println("Ingredient Added");
-                    MainIngredients.add(newIngredient);
-                    break;
-
-                case 2:
-                    //Header
-                    System.out.println("2. Remove an Ingredient\nAll Ingredients:");
-
-                    //Display all ingredients
-                    MainIngredients.displayIngredients();
-
-                    //Gets user input and removes the index
-                    System.out.println("\nEnter the index of the ingredient you want to remove");
-                    index = getUserInt(1, MainIngredients.size());
-                    MainIngredients.remove(index);
-
-                    break;
-
-                case 3:
-                    editIngredients(MainIngredients);
-                    break;
-
+                case 1: addIngredient(MainIngredients); break;
+                case 2: removeIngredient(MainIngredients); break;
+                case 3: editIngredients(MainIngredients); break;
                 case 4:
                     //Returns to the main menu
                     System.out.println("Returning");
@@ -113,7 +86,7 @@ public class Main
             String initialActions = "Choose a following action" +
                                     "\n1. Add a new meal" +
                                     "\n2. Return to main menu";
-            String normalActions = "CGoose a following action" +
+            String normalActions = "Choose a following action" +
                                    "\n1. Add a new meal" + 
                                    "\n2. Remove a meal" + 
                                    "\n3. Edit a meal" +
@@ -156,12 +129,28 @@ public class Main
         System.exit(0);
     }
 
-    private static void addMeal(){
+    private static void addIngredient(IngredientList MainIngredients){
+        //Header
+        System.out.println("1. Add an ingredient\n");
 
+        //Gets Ingredient
+        Ingredient newIngredient = getIngredient();
+
+        System.out.println("Ingredient Added");
+        MainIngredients.add(newIngredient);
     }
 
-    private static void removeIngredient(){
-        
+    private static void removeIngredient(IngredientList MainIngredients){
+        //Header
+        System.out.println("2. Remove an Ingredient\nAll Ingredients:");
+
+        //Display all ingredients
+        MainIngredients.displayIngredients();
+
+        //Gets user input and removes the index
+        System.out.println("\nEnter the index of the ingredient you want to remove");
+        int index = getUserInt(1, MainIngredients.size());
+        MainIngredients.remove(index);
     }
 
     //Functions in ManageIngredients()
