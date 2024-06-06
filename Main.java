@@ -163,7 +163,6 @@ public class Main
         System.out.println("\nEnter the index of the ingredient you want to edit");
         int index = getUserInt(1, MainIngredients.size());
 
-        // TODO: Editing an item is a lot of work lmao
         System.out.println("Editing: ");
         MainIngredients.displayIngredient(index);
 
