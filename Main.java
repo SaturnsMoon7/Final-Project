@@ -31,7 +31,7 @@ public class Main
                     continue;
             
                 case 2: // Manage Meals
-                    ManageMeals();
+                    ManageMeals(MainMeals);
                     continue;
 
                 case 3: // Exit Program
@@ -105,8 +105,49 @@ public class Main
         }
     }
 
-    static void ManageMeals(){
+    static void ManageMeals(MealList MainMeals) {
+        boolean looping = true;
+        while (looping) {
+            MainMeals.displayMeals();
+            System.out.println();
+            String initialActions = "Choose a following action" +
+                                    "\n1. Add a new meal" +
+                                    "\n2. Return to main menu";
+            String normalActions = "CGoose a following action" +
+                                   "\n1. Add a new meal" + 
+                                   "\n2. Remove a meal" + 
+                                   "\n3. Edit a meal" +
+                                   "\n4. Make a meal" +
+                                   "\n5. Return to main menu";
+            int choice = 0;
+            if (MainMeals.size() == 0) { 
+                System.out.println(initialActions); 
+                choice = getUserInt(1, 2);
+            } else { 
+                System.out.println(normalActions); 
+                choice = getUserInt(1, 5);
+            }
+            clear();
 
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the name of the meal");
+                    String name = getUserStr();
+
+                    IngredientList mealIngredients = new IngredientList();
+                    ManageIngredients(mealIngredients);
+
+                    System.out.println("Enter the prep time of the meal");
+                    int time = getUserInt();
+                    Meal newMeal = new Meal(name, mealIngredients, time);
+                    MainMeals.add(newMeal);
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+            }
+        }    
     }
 
     static void Quit(){
