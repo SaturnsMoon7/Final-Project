@@ -41,8 +41,6 @@ public class Main
     }
 
     public static void ManageIngredients(IngredientList MainIngredients){
-        int index;
-
         boolean looping = true;
         while (looping){
             clear();
@@ -86,6 +84,7 @@ public class Main
             String initialActions = "Choose a following action" +
                                     "\n1. Add a new meal" +
                                     "\n2. Return to main menu";
+                                    //TODO: account for this ^
             String normalActions = "Choose a following action" +
                                    "\n1. Add a new meal" + 
                                    "\n2. Remove a meal" + 
