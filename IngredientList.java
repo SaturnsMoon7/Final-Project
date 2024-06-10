@@ -19,7 +19,7 @@ public class IngredientList extends ArrayList<Ingredient> {
     }
 
     public void sortList(){
-        sortList(this);
+        this = sortList(this);
     }
 
     // Binary Search
