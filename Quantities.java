@@ -77,7 +77,7 @@ public class Quantities {
             case tbsp: conversionTable = new float[]{3, 1, 14.175f, 1/16f, 1/67.628f}; break;
             case grams: conversionTable = new float[]{4.9289f, 0.67f, 1, 1/250f, 0.001f}; break;
             case cups: conversionTable = new float[]{48f, 16f, 250f, 1, 0.236588f}; break;
-            case litres: conversionTable = new float[]{202.9f, 68.628f, 4.22675f, 1}; break;
+            case litres: conversionTable = new float[]{202.9f, 68.628f, 1000, 4.22675f, 1}; break;
             default: System.out.println("Unit: Conversion Table Error"); return;
         }
 
@@ -90,7 +90,7 @@ public class Quantities {
             case tbsp: index = 1; break;
             case grams: index = 2; break;
             case cups: index = 3; break;
-            case litres: index = 4; break;
+            case litres: index = 4; break;  
             default: System.out.println("newUnit: Out of Index Error"); return;
         }
 
