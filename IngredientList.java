@@ -28,8 +28,10 @@ public class IngredientList extends ArrayList<Ingredient> {
         this.set(index, newIngredient);
     }
 
-    public void sortList(){
-        this = sortList(this);
+    public void sortList() {
+        ArrayList<Ingredient> tempList = sortList(this);
+        this.clear();
+        this.addAll(tempList);
     }
 
     // Binary Search
@@ -79,6 +81,8 @@ public class IngredientList extends ArrayList<Ingredient> {
                 //nonexistent item
                 return -1;
             }
+
+            get(7);
         }
     }
 
