@@ -8,8 +8,37 @@ public class MealList extends ArrayList<Meal>
     private int nameSpace = 20;
     private int timeSpace = 12;
 
-    public void editMeal() {}
+    public void editMeal(int index, String newName) {
+        this.get(index).changeName(newName);
+    }
+
+    public void editMeal(int index, int newTime) {
+        this.get(index).changeTime(newTime);
+    }
+
+    public void editMeal(int index, Meal newMeal) {
+        this.set(index, newMeal);
+    }
+
     public void sort() {}
+
+    public void displayMeal(int index) {
+        Meal thisMeal = this.get(index);
+        String name = thisMeal.getName();
+        int time = thisMeal.getTime();
+
+        String nameTitle = spaceBuilder("Name: ", nameSpace);
+        String timeTitle = spaceBuilder("TIme: ", timeSpace);
+        String titleStr = nameTitle + "|" + timeTitle;
+
+        System.out.println(titleStr);
+        System.out.println(symbolBuilder("-", titleStr.length()));
+        System.out.println(spaceBuilder(name, nameSpace) + "|" + spaceBuilder(String.valueOf(time), timeSpace));
+        System.out.println();
+
+        System.out.println("Meal Ingredients:");
+        thisMeal.getIngredients().displayIngredients();
+    }
 
     public void displayMeals()
     {
@@ -29,12 +58,13 @@ public class MealList extends ArrayList<Meal>
             String name = this.get(i).getName();
             int time = this.get(i).getTime();
 
-            String numberStr = spaceBuilder(String.valueOf(i), numberSpace);
+            String numberStr = spaceBuilder(String.valueOf(i + 1), numberSpace);
             String nameStr = spaceBuilder(name, nameSpace);
             String timeStr = spaceBuilder(String.valueOf(time), timeSpace);
 
             System.out.println("|" + numberStr + "|" + nameStr + "|" + timeStr + "|"); 
         }
+        System.out.println();
     }
 
     private String spaceBuilder(String str, int amount) {
