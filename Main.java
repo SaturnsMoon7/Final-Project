@@ -124,7 +124,7 @@ public class Main
                 case 1: addMeal(MainMeals); break;
                 case 2: removeMeal(MainMeals); break;
                 case 3: editMeal(MainMeals); break;
-                case 4:
+                case 4: makeMeal(MainMeals); break;
                 case 5:
                     //Returns to the main menu
                     System.out.println("Returning");
@@ -266,6 +266,10 @@ public class Main
         }
     }
 
+
+
+
+
     private static void addMeal(MealList MainMeals) {
         System.out.println("1. Add a meal");
         System.out.println();
@@ -324,6 +328,19 @@ public class Main
         }
     }
 
+    private static void makeMeal(MealList MainMeals) {
+        // Header
+        System.out.println("4. Make a meal");
+        System.out.println();
+
+        MainMeals.displayMeals();
+
+        System.out.println("Enter the index of the meal you wnat to make");
+        int index = getUserInt(1, MainMeals.size()) - 1;
+
+        System.out.println("Chosen meal: ");
+        MainMeals.displayMeal(index);
+    }
 
     private static Meal getMeal() {
         System.out.println("Enter the name of the meal");

@@ -2,11 +2,20 @@ import java.util.ArrayList;
 
 
 //This class makes and sort meals.
-public class MealList extends ArrayList<Meal>
-{
+public class MealList extends ArrayList<Meal> {
     private int numberSpace = 3;
     private int nameSpace = 20;
     private int timeSpace = 12;
+
+    {
+    if (numberSpace < 3) {
+        throw new ArithmeticException("int numberSpace is too small");
+    } else if (nameSpace < 5) {
+        throw new ArithmeticException("int nameSpace is too small");
+    } else if (timeSpace < 11) {
+        throw new ArithmeticException("int amountSpace is too small");
+    }
+    }
 
     public void editMeal(int index, String newName) {
         this.get(index).changeName(newName);

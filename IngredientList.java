@@ -3,7 +3,17 @@ import java.util.ArrayList;
 public class IngredientList extends ArrayList<Ingredient> {
     private int numberSpace = 3;
     private int nameSpace = 19;
-    private int amountSpace = 15;
+    private int amountSpace = 15; 
+
+    {
+    if (numberSpace < 3) {
+        throw new ArithmeticException("int numberSpace is too small");
+    } else if (nameSpace < 5) {
+        throw new ArithmeticException("int nameSpace is too small");
+    } else if (amountSpace < 7) {
+        throw new ArithmeticException("int amountSpace is too small");
+    }
+    }
 
     // I <3 seperate constructors :)
     public void editItem(int index, String nameToChangeTo) {
