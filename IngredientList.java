@@ -1,31 +1,26 @@
 import java.util.ArrayList;
 
-public class IngredientList extends ArrayList<Ingredient>
-{
+public class IngredientList extends ArrayList<Ingredient> {
     private int numberSpace = 3;
     private int nameSpace = 19;
-    private int amountSpace = 11;
+    private int amountSpace = 15;
 
     // I <3 seperate constructors :)
-    public void EditItem(int index, Quantities amountToChange)
-    {
-        this.get(index).changeAmount(amountToChange);
-    }
-
-    public void EditItem(int index, String nameToChangeTo)
-    {
+    public void EditItem(int index, String nameToChangeTo) {
         this.get(index).changeName(nameToChangeTo);
     }
 
-    public void EditItem(int index, Ingredient newIngredient)
-    {
+    public void EditItem(int index, Quantities amountToChange) {
+        this.get(index).changeAmount(amountToChange);
+    }
+    
+    public void EditItem(int index, Ingredient newIngredient) {
         this.set(index, newIngredient);
     }
 
     // Binary Search
     // Returns index once item is found
-    private int searchlist(Ingredient ingredientToSearchFor)
-    {
+    private int searchlist(Ingredient ingredientToSearchFor) {
         String ItemToSerchFor = ingredientToSearchFor.getName();
 
         //assume the list is sorted
@@ -78,8 +73,7 @@ public class IngredientList extends ArrayList<Ingredient>
 
     //Merge sort
     // by amount
-    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) 
-    {
+    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) {
         if (arrayList.size() == 2) 
         {
             return arrayList;
@@ -117,55 +111,61 @@ public class IngredientList extends ArrayList<Ingredient>
     }
         
     public void displayIngredient(int index){
-        String ingredientName = this.get(index).getName();
-        System.out.println(ingredientName);
+        Ingredient thisIngredient = this.get(index);
+        String name = thisIngredient.getName();
+        String amount = thisIngredient.getAmount().getDisplay();
+
+        String nameTitle = spaceBuilder("Name: ", nameSpace);
+        String amountTitle = spaceBuilder("Amount: ", amountSpace);
+        String titleStr = nameTitle + "|" + amountTitle;
+
+        System.out.println(titleStr);
+        System.out.println(symbolBuilder("-", titleStr.length()));
+        System.out.println(spaceBuilder(name, nameSpace) + "|" + spaceBuilder(amount, amountSpace));
+        System.out.println();
     }
 
-    public void displayIngredients() 
-    {
-        if (this.size() == 0)
-        { System.out.println("No available ingredients"); return; }
-
-        else
-        { 
+    public void displayIngredients()  {
+        if (this.size() == 0) { 
+            System.out.println("No available ingredients"); 
+        } else { 
             System.out.println("Your available ingredients: "); 
             String numberStr = spaceBuilder("#", numberSpace);
             String nameStr= spaceBuilder("Name", nameSpace);
             String amountStr = spaceBuilder("Amount", amountSpace);
-            String titleStr = numberStr + "|" + nameStr + "||" + amountStr + "|";
+            String titleStr = "|" + numberStr + "|" + nameStr + "||" + amountStr + "|";
             System.out.println(titleStr);
             System.out.println(symbolBuilder("-", titleStr.length()));
         }
 
-        for (int i = 0; i < this.size(); i++)
-        {
+        for (int i = 0; i < this.size(); i++) {
             String ingredientName = this.get(i).getName();
             String ingredientAmount = this.get(i).getAmount().getDisplay();
 
             String numberStr = spaceBuilder(String.valueOf(i + 1), numberSpace);
-            String nameStr = "|" + spaceBuilder(ingredientName, nameSpace);
-            String amoutnStr = "||" + spaceBuilder(ingredientAmount, amountSpace) + "|";
-            System.out.println(numberStr + nameStr + amoutnStr);
+            String nameStr = spaceBuilder(ingredientName, nameSpace);
+            String amoutnStr = spaceBuilder(ingredientAmount, amountSpace);
+            System.out.println("|" + numberStr + "|" + nameStr + "||" + amoutnStr + "|");
         }
         System.out.println();
     }
 
-    public String spaceBuilder(String str, int length)
-    {
+    public String spaceBuilder(String str, int length) {
         str = " " + str;
         int initialLength = str.length();
         int difference = length - initialLength;
-        for (int i = 0; i < difference; i++)
-        { str += " "; }
+        for (int i = 0; i < difference; i++) { 
+            str += " "; 
+        }
 
         return str;
     }
 
-    public String symbolBuilder (String symbol, int length)
-    {
+    public String symbolBuilder (String symbol, int length) {
         String str = "";
-        for (int i = 0; i < length; i++)
-        { str += symbol; }
+        for (int i = 0; i < length; i++) { 
+            str += symbol; 
+        }
         
         return str;
     }

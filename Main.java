@@ -3,25 +3,25 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static void main(String[] args) 
-    {
-        //Create main objects
+    public static void main(String[] args) {
+        //Create main lists (Meals and Ingredients)
         IngredientList MainIngredients = new IngredientList();
         MealList MainMeals = new MealList();
+        
+        clear();
 
         //Welcome message
         System.out.println("Welcome to the Personalize Pantry Program"+
                            "\nBegin by filling your pantry with avaiable ingredients!");
-       // String input = scn.nextLine();
-
+        System.out.println();
+        
         boolean looping = true;
-        while (looping)
-        {
+        while (looping) {
+            // Print out list of options
             System.out.println("Choose an action from the following list:"
                             + "\n1. Manage ingredients"
                             + "\n2. Manage meals"
                             + "\n3. Exit program");
-
             int choice = getUserInt(1, 3);
 
             switch (choice) {
@@ -40,57 +40,70 @@ public class Main
         }
     }
 
-    public static void ManageIngredients(IngredientList MainIngredients){
+
+
+    // Manages a list of ingredients
+    public static void ManageIngredients(IngredientList MainIngredients) {
         boolean looping = true;
         while (looping){
             clear();
             MainIngredients.displayIngredients();
-            System.out.println();
-
-            String actionlist =  "Choose an action from the following list:"
-                                + "\n1. Add an ingredient";
-
-            if(MainIngredients.size() > 0){
-                actionlist += "\n2. Remove an ingredient"
-                            + "\n3. Edit an ingredient"
-                            + "\n4. Return to main menu";
-            }
-            else{
-                actionlist += "\n4. Return to main menu";
-            }
             
-            System.out.println(actionlist);
-            int choice = getUserInt(1, 4);
+            String initialActions = "Choose an action from the following list:"
+                                    + "\n1. Add an ingredient"
+                                    + "\n2. Return";
+            String normalActions = "Choose an action from the following list:"
+                                    + "\n1. Add an ingredient"
+                                    + "\n2. Remove an ingredient"
+                                    + "\n3. Edit an ingredient"
+                                    + "\n4. Sort ingredients"
+                                    + "\n5. Return";
+            int choice = 0;
+            if (MainIngredients.size() == 0) {
+                System.out.println(initialActions);
+                choice = getUserInt(1, 2);
+            } else {
+                System.out.println(normalActions);
+                choice = getUserInt(1, 4);
+            }
             clear();
 
             switch (choice) {
                 case 1: addIngredient(MainIngredients); break;
-                case 2: removeIngredient(MainIngredients); break;
+
+                case 2: 
+                    if (MainIngredients.size() == 0) { return; } // If list is empty, (2) returns
+                    removeIngredient(MainIngredients); 
+                    break;
+
                 case 3: editIngredients(MainIngredients); break;
-                case 4:
+
+                case 4: 
+
+                case 5:
                     //Returns to the main menu
                     System.out.println("Returning");
-                    wait(100);
+                    wait(100); 
                     return;
             }
         }
     }
 
-    static void ManageMeals(MealList MainMeals) {
+    private static void ManageMeals(MealList MainMeals) {
         boolean looping = true;
         while (looping) {
             MainMeals.displayMeals();
             System.out.println();
+
             String initialActions = "Choose a following action" +
                                     "\n1. Add a new meal" +
-                                    "\n2. Return to main menu";
-                                    //TODO: account for this ^
+                                    "\n2. Return";
             String normalActions = "Choose a following action" +
                                    "\n1. Add a new meal" + 
                                    "\n2. Remove a meal" + 
                                    "\n3. Edit a meal" +
                                    "\n4. Make a meal" +
-                                   "\n5. Return to main menu";
+                                   "\n5. Return";
             int choice = 0;
             if (MainMeals.size() == 0) { 
                 System.out.println(initialActions); 
@@ -102,17 +115,7 @@ public class Main
             clear();
 
             switch (choice) {
-                case 1:
-                    System.out.println("Enter the name of the meal");
-                    String name = getUserStr();
-
-                    IngredientList mealIngredients = new IngredientList();
-                    ManageIngredients(mealIngredients);
-
-                    System.out.println("Enter the prep time of the meal");
-                    int time = getUserInt();
-                    Meal newMeal = new Meal(name, mealIngredients, time);
-                    MainMeals.add(newMeal);
+                case 1: addMeal(MainMeals);
                 case 2:
                 case 3:
                 case 4:
@@ -122,13 +125,14 @@ public class Main
         }    
     }
 
-    static void Quit(){
-        clear();
-        System.out.println("Thanks for using our Kitchen Program!");
-        System.exit(0);
-    }
 
-    private static void addIngredient(IngredientList MainIngredients){
+   
+
+
+
+
+
+    private static void addIngredient(IngredientList MainIngredients) {
         //Header
         System.out.println("1. Add an ingredient\n");
 
@@ -139,38 +143,41 @@ public class Main
         MainIngredients.add(newIngredient);
     }
 
-    private static void removeIngredient(IngredientList MainIngredients){
+    private static void removeIngredient(IngredientList MainIngredients) {
         //Header
-        System.out.println("2. Remove an Ingredient\nAll Ingredients:");
+        System.out.println("2. Remove an Ingredient");
+        System.out.println();
 
         //Display all ingredients
         MainIngredients.displayIngredients();
 
         //Gets user input and removes the index
-        System.out.println("\nEnter the index of the ingredient you want to remove");
-        int index = getUserInt(1, MainIngredients.size());
+        System.out.println("Enter the index of the ingredient you want to remove");
+        int index = getUserInt(1, MainIngredients.size()) - 1;
         MainIngredients.remove(index);
     }
 
     //Functions in ManageIngredients()
-    private static void editIngredients(IngredientList MainIngredients){
+    private static void editIngredients(IngredientList MainIngredients) {
         //Header
-        System.out.println("2. Edit an Ingredient\nAll Ingredients:");
+        System.out.println("3. Edit an Ingredient");
+        System.out.println();
 
         MainIngredients.displayIngredients();
 
-        System.out.println("\nEnter the index of the ingredient you want to edit");
-        int index = getUserInt(1, MainIngredients.size());
+        System.out.println("Enter the index of the ingredient you want to edit");
+        int index = getUserInt(1, MainIngredients.size()) - 1;
+        System.out.println();
 
-        System.out.println("Editing: ");
+        System.out.println("Editing ingredient: ");
         MainIngredients.displayIngredient(index);
 
         System.out.println("What do you want to edit?"
                         + "\n1. Name"
                         + "\n2. Amount"
                         + "\n3. The entire Ingredient");
-
         int choice = getUserInt(1,3);
+        System.out.println();
 
         switch (choice) {
             case 1:
@@ -195,6 +202,37 @@ public class Main
         }
     }
 
+    private static void sortIngredients(IngredientList MainIngredients) {
+        // Header
+        System.out.println("4. Sort ingredients");
+        System.out.println();
+
+        MainIngredients.displayIngredients();
+
+        System.out.println("What do you want to edit?"
+                        + "\n1. Name"
+                        + "\n2. Amount");
+
+        System.out.println("Enter the method of sorting");
+        int choice = getUserInt(1, 2);
+        switch (choice) {
+            case 1:
+                MainIngredients.so
+            case 2:
+        };
+    }
+
+    private static Ingredient getIngredient() {
+        //Gets the name 
+        System.out.println("Enter the name of the ingredient:");
+        String ingredientName = getUserStr();
+
+        //Gets the amount
+        Quantities ingredientQuantity = getAmount();
+        Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
+        return newIngredient;
+    }
+
     private static Quantities getAmount(){
         System.out.println("\nEnter the amount of the ingredient:");
         Float ingredientAmount = getUserFloat();
@@ -209,25 +247,8 @@ public class Main
         return ingredientQuantity;
     }
 
-    private static Ingredient getIngredient(){
-        //Gets the name 
-        System.out.println("Enter the name of the ingredient:");
-        String ingredientName = getUserStr();
-
-        //Gets the amount
-        Quantities ingredientQuantity = getAmount();
-        Ingredient newIngredient = new Ingredient(ingredientName, ingredientQuantity);
-        return newIngredient;
-    }
-
-    public static void displayUnits(){
+    public static MeasurementUnit getMeasurementUnit() {
         System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
-    }
-
-
-    public static MeasurementUnit getMeasurementUnit(){
-        System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
-
         int choice = getUserInt(1, 5);
 
         switch (choice) {
@@ -240,9 +261,50 @@ public class Main
         }
     }
 
+
+
+
+
+    private static void addMeal(MealList MainMeals) {
+        System.out.println("1. Add a meal");
+
+        Meal newMeal = getMeal();
+        System.out.println("Meal added");
+        MainMeals.add(newMeal);
+    }
+
+    private static void removeMeal(MealList MainMeals) {
+        //Header
+        System.out.println("2. Remove a meal");
+
+        //Display all ingredients
+        MainMeals.displayMeals();
+
+        //Gets user input and removes the index
+        System.out.println("\nEnter the index of the meal you want to remove");
+        int index = getUserInt(1, MainMeals.size()) - 1;
+        MainMeals.remove(index);
+    }
+
+    private static Meal getMeal() {
+        System.out.println("Enter the name of the meal");
+        String name = getUserStr();
+
+        IngredientList mealIngredients = new IngredientList();
+        ManageIngredients(mealIngredients);
+
+        System.out.println("Enter the prep time of the meal");
+        int time = getUserInt();
+        Meal newMeal = new Meal(name, mealIngredients, time);
+        return newMeal;
+    }
+
+
+
+
+
     //Gets any whole numbers.
-    public static int getUserInt()
-    {
+    public static int getUserInt() {
         Scanner scn = new Scanner(System.in);
         int input = 0;
 
@@ -253,10 +315,9 @@ public class Main
         }
         return input;
     }
-    
+
     //Gets whole numbers with minimum and maximum(restriction).
-    public static int  getUserInt(int min, int max)
-    {
+    public static int getUserInt(int min, int max) {
         Scanner scn = new Scanner(System.in);
         int userNumber = min - 1; // Set userNumber to be less than min, so that we enter the loop.
         String prompt = "Enter an integer between " + min + " and " + max + ": ";
@@ -286,8 +347,7 @@ public class Main
     }
 
     //Gets decimal numbers
-    public static float getUserFloat()
-    {
+    public static float getUserFloat() {
         Scanner scn = new Scanner(System.in);
 
         // Loop as long as an integer has NOT been inputted.
@@ -296,34 +356,42 @@ public class Main
             scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
         }
 
-
         float input = scn.nextFloat();
         return input;
     }
 
     //Gets string/words/letters
-    public static String getUserStr()
-    {
+    public static String getUserStr() {
         Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
         return input;
     }
     
-    public static void clear(){
+
+
+
+
+    // Clears the terminal
+    public static void clear() {
     // Clear the console screen 
     System.out.print("\033[H\033[2J"); 
     System.out.flush(); 
     }
 
-    private static void wait(int ms)
-    {
-        try
-        {
-            Thread.sleep(ms);
+    // Special wait function for effects
+    private static void wait(int ms) {
+        try {  
+            Thread.sleep(ms); 
+        } 
+        catch(InterruptedException ex) { 
+            Thread.currentThread().interrupt(); 
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+    } 
+
+    // Quitting the program
+    private static void Quit() {
+        clear();
+        System.out.println("Thanks for using our Kitchen Program!");
+        System.exit(0);
     }
 }
