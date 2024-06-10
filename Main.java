@@ -12,7 +12,7 @@ public class Main
         //Welcome message
         System.out.println("Welcome to the Personalize Pantry Program"+
                            "\nBegin by filling your pantry with avaiable ingredients!");
-       // String input = scn.nextLine();
+       // the ppp program hehe
 
         boolean looping = true;
         while (looping)
@@ -295,7 +295,6 @@ public class Main
             System.out.println("That is not an float.\n");
             scn.next(); // Consume the next token. Note: scn.hasNextInt() does NOT consume the token.
         }
-
 
         float input = scn.nextFloat();
         return input;
