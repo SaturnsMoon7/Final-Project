@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+// Fix no ingredients when editing meal ingredients
+// display header action when doing action like editing or adding
+// weird bug with 5th measurement
+
 import java.util.Scanner;
 
 public class Main
@@ -64,7 +67,7 @@ public class Main
                 choice = getUserInt(1, 2);
             } else {
                 System.out.println(normalActions);
-                choice = getUserInt(1, 4);
+                choice = getUserInt(1, 5);
             }
             clear();
 
@@ -76,7 +79,7 @@ public class Main
                     removeIngredient(MainIngredients); 
                     break;
 
-                case 3: editIngredients(MainIngredients); break;
+                case 3: editIngredient(MainIngredients); break;
 
                 case 4: 
 
@@ -92,8 +95,8 @@ public class Main
     private static void ManageMeals(MealList MainMeals) {
         boolean looping = true;
         while (looping) {
+            clear();
             MainMeals.displayMeals();
-            System.out.println();
 
             String initialActions = "Choose a following action" +
                                     "\n1. Add a new meal" +
@@ -115,12 +118,16 @@ public class Main
             clear();
 
             switch (choice) {
-                case 1: addMeal(MainMeals);
-                case 2:
-                case 3:
+                case 1: addMeal(MainMeals); break;
+                case 2: removeMeal(MainMeals); break;
+                case 3: editMeal(MainMeals); break;
                 case 4:
                 case 5:
-                    break;
+                    //Returns to the main menu
+                    System.out.println("Returning");
+                    wait(100); 
+                    System.out.println();
+                    return;
             }
         }    
     }
@@ -158,7 +165,7 @@ public class Main
     }
 
     //Functions in ManageIngredients()
-    private static void editIngredients(IngredientList MainIngredients) {
+    private static void editIngredient(IngredientList MainIngredients) {
         //Header
         System.out.println("3. Edit an Ingredient");
         System.out.println();
@@ -175,7 +182,7 @@ public class Main
         System.out.println("What do you want to edit?"
                         + "\n1. Name"
                         + "\n2. Amount"
-                        + "\n3. The entire Ingredient");
+                        + "\n3. The entire ingredient");
         int choice = getUserInt(1,3);
         System.out.println();
 
@@ -183,13 +190,13 @@ public class Main
             case 1:
                 System.out.println("Enter the new name:");
                 String newName = getUserStr();
-                MainIngredients.EditItem(index, newName);
+                MainIngredients.editItem(index, newName);
                 break;
             
             case 2:
                 System.out.println("Enter the new amount:");
                 Quantities newAmount = getAmount();
-                MainIngredients.EditItem(index, newAmount);
+                MainIngredients.editItem(index, newAmount);
                 break;
 
             case 3:
@@ -197,7 +204,7 @@ public class Main
                 Ingredient newIngredient = getIngredient();
 
                 //Edits item
-                MainIngredients.EditItem(index, newIngredient);
+                MainIngredients.editItem(index, newIngredient);
                 break;
         }
     }
@@ -217,10 +224,12 @@ public class Main
         int choice = getUserInt(1, 2);
         switch (choice) {
             case 1:
-                MainIngredients.so
+                //MainIngredients.so
             case 2:
         };
     }
+
+
 
     private static Ingredient getIngredient() {
         //Gets the name 
@@ -267,6 +276,7 @@ public class Main
 
     private static void addMeal(MealList MainMeals) {
         System.out.println("1. Add a meal");
+        System.out.println();
 
         Meal newMeal = getMeal();
         System.out.println("Meal added");
@@ -286,6 +296,43 @@ public class Main
         MainMeals.remove(index);
     }
 
+    private static void editMeal(MealList MainMeals) {
+        // Header
+        System.out.println("3. Edit a meal");
+        System.out.println();
+
+        MainMeals.displayMeals();
+
+        System.out.println("Enter the index of the meal you want to edit");
+        int index = getUserInt(1, MainMeals.size()) - 1;
+        System.out.println();
+
+        System.out.println("Editing meal: ");
+        MainMeals.displayMeal(index);
+
+        System.out.println("What do you want to edit?"
+                        + "\n1. Name"
+                        + "\n2. Ingredients"
+                        + "\n3. Time");
+        int choice = getUserInt(1, 3);
+        System.out.println();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the new name:");
+                String newName = getUserStr();
+                MainMeals.editMeal(index, newName);
+                break;
+
+            case 2: editIngredient(MainMeals.get(index).getIngredients());
+
+            case 3: 
+                Meal newMeal = getMeal();
+                MainMeals.editMeal(index, newMeal);
+        }
+    }
+
+
     private static Meal getMeal() {
         System.out.println("Enter the name of the meal");
         String name = getUserStr();
@@ -293,7 +340,7 @@ public class Main
         IngredientList mealIngredients = new IngredientList();
         ManageIngredients(mealIngredients);
 
-        System.out.println("Enter the prep time of the meal");
+        System.out.println("Enter the prep time of the meal (min)");
         int time = getUserInt();
         Meal newMeal = new Meal(name, mealIngredients, time);
         return newMeal;
@@ -306,13 +353,13 @@ public class Main
     //Gets any whole numbers.
     public static int getUserInt() {
         Scanner scn = new Scanner(System.in);
-        int input = 0;
 
-        boolean repeat = true;
-        while (repeat) { 
-            input = scn.nextInt();
-            repeat = false;
+        while (!scn.hasNextInt()) {
+            System.out.println("That is not an integer");
+            scn.next();
         }
+
+        int input = scn.nextInt();
         return input;
     }
 

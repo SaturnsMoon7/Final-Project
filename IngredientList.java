@@ -6,15 +6,15 @@ public class IngredientList extends ArrayList<Ingredient> {
     private int amountSpace = 15;
 
     // I <3 seperate constructors :)
-    public void EditItem(int index, String nameToChangeTo) {
+    public void editItem(int index, String nameToChangeTo) {
         this.get(index).changeName(nameToChangeTo);
     }
 
-    public void EditItem(int index, Quantities amountToChange) {
+    public void editItem(int index, Quantities amountToChange) {
         this.get(index).changeAmount(amountToChange);
     }
     
-    public void EditItem(int index, Ingredient newIngredient) {
+    public void editItem(int index, Ingredient newIngredient) {
         this.set(index, newIngredient);
     }
 
