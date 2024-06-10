@@ -84,7 +84,7 @@ public class Main
 
                 case 3: editIngredient(MainIngredients); break;
 
-                case 4: 
+                case 4: sortIngredients(MainIngredients); break;
 
                 case 5:
                     //Returns to the main menu
@@ -212,17 +212,23 @@ public class Main
 
         MainIngredients.displayIngredients();
 
-        System.out.println("What do you want to edit?"
-                        + "\n1. Name"
-                        + "\n2. Amount");
+        System.out.println("How do you want to sort?"
+                        + "\n1. By name"
+                        + "\n2. By amount");
 
         System.out.println("Enter the method of sorting");
         int choice = getUserInt(1, 2);
+
+        //Illusion of free will rn
         switch (choice) {
             case 1:
-                //MainIngredients.so
+                MainIngredients.sortList();
+                break;
             case 2:
-        };
+                System.out.println("Not done");
+                MainIngredients.sortList();
+                break;
+        }
     }
 
 

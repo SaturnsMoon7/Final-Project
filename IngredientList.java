@@ -18,6 +18,10 @@ public class IngredientList extends ArrayList<Ingredient> {
         this.set(index, newIngredient);
     }
 
+    public void sortList(){
+        sortList(this);
+    }
+
     // Binary Search
     // Returns index once item is found
     private int searchlist(Ingredient ingredientToSearchFor) {
@@ -67,9 +71,6 @@ public class IngredientList extends ArrayList<Ingredient> {
             }
         }
     }
-
-    // TODO: Merge sort by name, Merge sort by qunatity. 
-    //  ok nvm i have no clue what I am doing
 
     //Merge sort
     // by amount
