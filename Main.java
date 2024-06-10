@@ -57,7 +57,7 @@ public class Main
             String initialActions = "Choose an action from the following list:"
                                     + "\n1. Add an ingredient"
                                     + "\n2. Return";
-                                    // TODO: Return wont work.
+
             String normalActions = "Choose an action from the following list:"
                                     + "\n1. Add an ingredient"
                                     + "\n2. Remove an ingredient"
