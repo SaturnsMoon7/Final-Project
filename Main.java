@@ -122,7 +122,17 @@ public class Main
 
             switch (choice) {
                 case 1: addMeal(MainMeals); break;
-                case 2: removeMeal(MainMeals); break;
+                case 2: 
+                    if(MainMeals.size() == 0){
+                        //Returns to the main menu
+                        System.out.println("Returning");
+                        wait(100); 
+                        System.out.println();
+                    return;
+                    }
+                    else
+                    removeMeal(MainMeals); 
+                    break;
                 case 3: editMeal(MainMeals); break;
                 case 4: makeMeal(MainMeals); break;
                 case 5:
