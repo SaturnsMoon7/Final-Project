@@ -108,8 +108,9 @@ public class Main
                                    "\n1. Add a new meal" + 
                                    "\n2. Remove a meal" + 
                                    "\n3. Edit a meal" +
-                                   "\n4. Make a meal" +
-                                   "\n5. Return";
+                                   "\n4. Sort meal list" + 
+                                   "\n5. Make a meal" +
+                                   "\n6. Return";
             int choice = 0;
             if (MainMeals.size() == 0) { 
                 System.out.println(initialActions); 
@@ -127,8 +128,9 @@ public class Main
                     else{ removeMeal(MainMeals); }
                     break;
                 case 3: editMeal(MainMeals); break;
-                case 4: makeMeal(MainMeals); break;
-                case 5: returnToMenu(); return;
+                case 4: sortMeals(MainMeals); break;
+                case 5: makeMeal(MainMeals); break;
+                case 6: returnToMenu(); return;
             }
         }    
     }
@@ -231,6 +233,31 @@ public class Main
                 break;
             case 2:
                 MainIngredients.sortListByNum();
+                break;
+        }
+    }
+
+    private static void sortMeals(MealList MainMeals) {
+        // Header
+        System.out.println("4. Sort ingredients");
+        System.out.println();
+
+        MainMeals.displayMeals();
+
+        System.out.println("How do you want to sort?"
+                        + "\n1. By name"
+                        + "\n2. By time prep");
+
+        System.out.println("Enter the method of sorting");
+        int choice = getUserInt(1, 2);
+
+        //Illusion of free will rn
+        switch (choice) {
+            case 1:
+                MainMeals.sortListByName();
+                break;
+            case 2:
+            MainMeals.sortListByTime();
                 break;
         }
     }
@@ -359,10 +386,6 @@ public class Main
         Meal newMeal = new Meal(name, mealIngredients, time);
         return newMeal;
     }
-
-
-
-
 
     //Gets any whole numbers.
     public static int getUserInt() {

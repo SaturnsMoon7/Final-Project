@@ -23,7 +23,8 @@ public class Quantities {
         this.amount = amount;
         this.unit = unit;
 
-        //doing this to set the 'inGrams' variable for now
+        // doing this to set the 'inGrams' variable for now
+        // it was not for now aaaaaaaaa
         convert(unit);
     }
 
