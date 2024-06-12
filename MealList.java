@@ -29,8 +29,6 @@ public class MealList extends ArrayList<Meal> {
         this.set(index, newMeal);
     }
 
-    public void sort() {}
-
     public void displayMeal(int index) {
         Meal thisMeal = this.get(index);
         String name = thisMeal.getName();
@@ -98,5 +96,69 @@ public class MealList extends ArrayList<Meal> {
         }
         
         return str;
+    }
+
+    //Sorting
+    public void sortListByName(){
+        ArrayList<Meal> tempList = sortList(this, true);
+        this.clear();
+        this.addAll(tempList);
+    }
+
+    public void sortListByNum(){
+        ArrayList<Meal> tempList = sortList(this, false);
+        this.clear();
+        this.addAll(tempList);
+    }
+
+    //Merge sort
+    private ArrayList<Meal> sortList(ArrayList<Meal> arrayList, boolean byName) {
+        if (arrayList.size() == 2) 
+        {
+            return arrayList;
+        }
+        int mid = arrayList.size() / 2;
+        ArrayList<Meal> left = new ArrayList<Meal>(arrayList.subList(0, mid));
+        ArrayList<Meal> right = new ArrayList<Meal>(arrayList.subList(mid, arrayList.size()));
+
+        // Recursively sort the left and right halves
+        // if this bool on
+        left = sortList(left, byName);
+        right = sortList(right, byName);
+
+        // Merge the sorted halves
+        return mergeList(left, right, byName);
+    }
+
+    private ArrayList<Meal> mergeList(ArrayList<Meal> left, ArrayList<Meal> right, boolean byName) {
+        if (left.isEmpty()) {
+            return right;
+        }
+        if (right.isEmpty()) {
+            return left;
+        }
+
+        ArrayList<Meal> merged = new ArrayList<>();
+
+        boolean mergeCheck;
+
+        //compareToIgnoreCase
+
+        if (byName){
+            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
+        }
+        else{
+            mergeCheck = left.get(0).getTime() >= right.get(0).getTime();
+        }
+
+        if (mergeCheck) {
+            merged.add(left.remove(0));
+            merged.addAll(mergeList(left, right, byName));
+        } else {
+            merged.add(right.remove(0));
+            merged.addAll(mergeList(left, right, byName));
+        }
+
+        return merged;
     }
 }

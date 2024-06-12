@@ -86,7 +86,6 @@ public class IngredientList extends ArrayList<Ingredient> {
     }
 
     //Merge sort
-    // by amount
     private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList, boolean byName) {
         if (arrayList.size() == 2) {
             return arrayList;
