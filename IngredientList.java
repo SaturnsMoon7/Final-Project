@@ -40,60 +40,7 @@ public class IngredientList extends ArrayList<Ingredient> {
         this.addAll(tempList);
     }
 
-    // Binary Search
-    // Returns index once item is found
-    private int searchlist(Ingredient ingredientToSearchFor) {
-        String ItemToSerchFor = ingredientToSearchFor.getName();
-
-        //assume the list is sorted
-        int start = 0;
-        int end = this.size() - 1;
-
-        while (true) {
-            //Set mid
-            int mid = Math.round(((start + end) /2));
-
-            // I need this for readability
-            String currentMid = this.get(mid).getName();
-
-            //Remeber old start and old end
-            int oldStart = start;
-            int oldEnd = end;
-
-            // Compare and redo
-            if(currentMid.equals(ItemToSerchFor))
-            {
-                //finally found the item
-                return mid;
-            }
-
-            else if(currentMid.compareTo(ItemToSerchFor) > 0)
-            {
-                //ingredientlist at mid is greater than item
-                start = mid + 1;
-            }
-
-            else if(currentMid.compareTo(ItemToSerchFor) < 0)
-            {
-                //ingredientlist at mid is less than item
-                end = mid - 1;
-            }
-
-            //I have no clue if this actually works
-            
-            //failsafe
-            if (oldStart == start && oldEnd == end)
-            {
-                //nonexistent item
-                return -1;
-            }
-
-            get(7);
-        }
-    }
-
     //Merge sort
-    // by amount
     private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList, boolean byName) {
         if (arrayList.size() == 2) 
         {
