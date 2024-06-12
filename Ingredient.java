@@ -3,41 +3,28 @@ public class Ingredient
     private String name;
     private Quantities amount;
 
-    //Identify the Ingredient and the quantitties of it.
-    Ingredient(String name, Quantities amount)
-    {
+    Ingredient(String name, Quantities amount) {
         this.name = name;
         this.amount = amount;
     }
 
-    public void changeName(String newName)
-    {
-        this.name = newName;
+    // Sets a new ingredient name to name
+    public void changeName(String newName) {
+        name = newName;
     }
 
-    public void changeAmount(Quantities newAmount)
-    {
-        this.amount = newAmount;
+    // Sets a new ingredient amount to amount
+    public void changeAmount(Quantities newAmount) {
+        amount = newAmount;
     }
 
-    public String getName()
-    {
-        return this.name;
+    // Returns the name of the ingredient
+    public String getName() {
+        return name;
     }
 
-    public void displayIngredient()
-    {
-        System.out.println("Name: " + name + "\nAmount" + amount.toString());
-    }
-
-    public void add() 
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-
-    public Quantities getAmount()
-    {
+    // Returns the amount of the ingredient
+    public Quantities getAmount() { 
         return amount;
     }
 }

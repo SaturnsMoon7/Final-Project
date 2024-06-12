@@ -7,7 +7,6 @@ enum MeasurementUnit{
 }
 
 public class Quantities {
-
     // Premade units
     private float amount;
     private MeasurementUnit unit;
@@ -20,7 +19,7 @@ public class Quantities {
     private String customUnit;
     private boolean customUnitReal = false;
 
-    Quantities(float amount, MeasurementUnit unit){
+    Quantities(float amount, MeasurementUnit unit) {
         this.amount = amount;
         this.unit = unit;
 
@@ -29,24 +28,12 @@ public class Quantities {
     }
 
     //Basic functions
-    public void addAmount(float amountToAdd)
-    {
-        this.amount += amountToAdd;
-    }
-
-    public void subtractAmount(float amountToRemove)
-    {
-        this.amount -= amountToRemove;
-    }
-
-    public float getGrams()
-    {
+    public float getGrams() {
         return inGrams;
     }
 
     // Planning for a custom unit adder but I'm conflicted on how to add it.
-    Quantities (float amount, String unit)
-    {
+    Quantities (float amount, String unit) {
         this.amount = amount;
         this.customUnit = unit;
 
@@ -57,13 +44,11 @@ public class Quantities {
         inGrams = amount;
     }
 
-    public void convert(MeasurementUnit newUnit)
-    {
+    public void convert(MeasurementUnit newUnit) {
         /* !!! NOTE: Conversions won't be the most accurate due to items having different densities !!! */
 
         //Check if custom unit
-        if (customUnitReal)
-        {
+        if (customUnitReal) {
             System.out.println("Cannot convert due to custom unit"); //this is an output
             return;
         }
@@ -71,8 +56,7 @@ public class Quantities {
         float[] conversionTable;
         // Raitos use water as a base!!!
         // Order of conversion units: tsp   tbsp  grams  cups  litres
-        switch (unit) 
-        {
+        switch (unit) {
             case tsp: conversionTable = new float[]{1, 1/3f, 5.69f, 1/48f, 1/202.9f}; break;
             case tbsp: conversionTable = new float[]{3, 1, 14.175f, 1/16f, 1/67.628f}; break;
             case grams: conversionTable = new float[]{4.9289f, 0.67f, 1, 1/250f, 0.001f}; break;
@@ -84,8 +68,7 @@ public class Quantities {
         //find the conversion ratio for that type
         int index;
 
-        switch (newUnit)
-        {
+        switch (newUnit) {
             case tsp: index = 0; break;
             case tbsp: index = 1; break;
             case grams: index = 2; break;
@@ -98,28 +81,10 @@ public class Quantities {
         this.inGrams = this.amount * conversionTable[3];
         this.amount *= conversionTable[index];
         this.unit = newUnit;
-
-        //Does this work? Idk.
     }
 
-    // Note for Willchel
-    // lmk if there is any changes you want to this output
-
-    @Override
-    public String toString()
-    {
-        return customUnitReal ? amount + " " + customUnit : amount + " " + unit;
-    }
-
-    public void display()
-    {
-        System.out.println(customUnitReal ? amount + " " + customUnit : amount + " " + unit);
-    }
-
-    public String getDisplay()
-    {
+    public String getDisplay() {
         String str = customUnitReal ? amount + " " + customUnit : amount + " " + unit;
         return str;
     }
-
 }

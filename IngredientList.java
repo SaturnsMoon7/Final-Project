@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
 public class IngredientList extends ArrayList<Ingredient> {
+    // Parameters for the display table (# of characters for each part)
     private int numberSpace = 3;
     private int nameSpace = 19;
     private int amountSpace = 15; 
 
-    {
+    { // Checks if the table parameters are within limits
     if (numberSpace < 3) {
         throw new ArithmeticException("int numberSpace is too small");
     } else if (nameSpace < 5) {
@@ -55,20 +56,13 @@ public class IngredientList extends ArrayList<Ingredient> {
             int oldEnd = end;
 
             // Compare and redo
-            if(currentMid.equals(ItemToSerchFor))
-            {
+            if (currentMid.equals(ItemToSerchFor)) {
                 //finally found the item
                 return mid;
-            }
-
-            else if(currentMid.compareTo(ItemToSerchFor) > 0)
-            {
+            } else if (currentMid.compareTo(ItemToSerchFor) > 0) {
                 //ingredientlist at mid is greater than item
                 start = mid + 1;
-            }
-
-            else if(currentMid.compareTo(ItemToSerchFor) < 0)
-            {
+            } else if (currentMid.compareTo(ItemToSerchFor) < 0) {
                 //ingredientlist at mid is less than item
                 end = mid - 1;
             }
@@ -76,8 +70,7 @@ public class IngredientList extends ArrayList<Ingredient> {
             //I have no clue if this actually works
             
             //failsafe
-            if (oldStart == start && oldEnd == end)
-            {
+            if (oldStart == start && oldEnd == end) {
                 //nonexistent item
                 return -1;
             }
@@ -89,8 +82,7 @@ public class IngredientList extends ArrayList<Ingredient> {
     //Merge sort
     // by amount
     private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) {
-        if (arrayList.size() == 2) 
-        {
+        if (arrayList.size() == 2) {
             return arrayList;
         }
         int mid = arrayList.size() / 2;
@@ -125,7 +117,7 @@ public class IngredientList extends ArrayList<Ingredient> {
         return merged;
     }
         
-    public void displayIngredient(int index){
+    public void displayIngredient(int index) {
         Ingredient thisIngredient = this.get(index);
         String name = thisIngredient.getName();
         String amount = thisIngredient.getAmount().getDisplay();
@@ -140,7 +132,8 @@ public class IngredientList extends ArrayList<Ingredient> {
         System.out.println();
     }
 
-    public void displayIngredients()  {
+    // Displays the ingredients in a table-like manor
+    public void displayIngredients() {
         if (this.size() == 0) { 
             System.out.println("No available ingredients"); 
         } else { 
@@ -165,10 +158,12 @@ public class IngredientList extends ArrayList<Ingredient> {
         System.out.println();
     }
 
+    // Creates a string with blank spaces up to the specified length
     public String spaceBuilder(String str, int length) {
-        str = " " + str;
+        str = " " + str; // Makes each string start with a space
         int initialLength = str.length();
-        int difference = length - initialLength;
+        
+        int difference = length - initialLength; // The number of characters left to satisfy the length
         for (int i = 0; i < difference; i++) { 
             str += " "; 
         }
@@ -176,6 +171,7 @@ public class IngredientList extends ArrayList<Ingredient> {
         return str;
     }
 
+    // Creates a string with a character up ot the specified length
     public String symbolBuilder (String symbol, int length) {
         String str = "";
         for (int i = 0; i < length; i++) { 
