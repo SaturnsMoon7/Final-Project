@@ -232,11 +232,10 @@ public class Main
         //Illusion of free will rn
         switch (choice) {
             case 1:
-                MainIngredients.sortList();
+                MainIngredients.sortListByName();
                 break;
             case 2:
-                System.out.println("Not done");
-                MainIngredients.sortList();
+                MainIngredients.sortListByNum();
                 break;
         }
     }

@@ -28,8 +28,14 @@ public class IngredientList extends ArrayList<Ingredient> {
         this.set(index, newIngredient);
     }
 
-    public void sortList() {
-        ArrayList<Ingredient> tempList = sortList(this);
+    public void sortListByName() {
+        ArrayList<Ingredient> tempList = sortList(this, true);
+        this.clear();
+        this.addAll(tempList);
+    }
+
+    public void sortListByNum(){
+        ArrayList<Ingredient> tempList = sortList(this, false);
         this.clear();
         this.addAll(tempList);
     }
@@ -88,7 +94,7 @@ public class IngredientList extends ArrayList<Ingredient> {
 
     //Merge sort
     // by amount
-    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList) {
+    private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList, boolean byName) {
         if (arrayList.size() == 2) 
         {
             return arrayList;
@@ -98,14 +104,15 @@ public class IngredientList extends ArrayList<Ingredient> {
         ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
 
         // Recursively sort the left and right halves
-        left = sortList(left);
-        right = sortList(right);
+        // if this bool on
+        left = sortList(left, byName);
+        right = sortList(right, byName);
 
         // Merge the sorted halves
-        return mergeList(left, right);
+        return mergeList(left, right, byName);
     }
 
-    private ArrayList<Ingredient> mergeList(ArrayList<Ingredient> left, ArrayList<Ingredient> right) {
+    private ArrayList<Ingredient> mergeList(ArrayList<Ingredient> left, ArrayList<Ingredient> right, boolean byName) {
         if (left.isEmpty()) {
             return right;
         }
@@ -114,12 +121,24 @@ public class IngredientList extends ArrayList<Ingredient> {
         }
 
         ArrayList<Ingredient> merged = new ArrayList<>();
-        if (left.get(0).getAmount().getGrams() <= right.get(0).getAmount().getGrams()) {
+
+        boolean mergeCheck;
+
+        //compareToIgnoreCase
+
+        if (byName){
+            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
+        }
+        else{
+            mergeCheck = left.get(0).getAmount().getGrams() >= right.get(0).getAmount().getGrams();
+        }
+
+        if (mergeCheck) {
             merged.add(left.remove(0));
-            merged.addAll(mergeList(left, right));
+            merged.addAll(mergeList(left, right, byName));
         } else {
             merged.add(right.remove(0));
-            merged.addAll(mergeList(left, right));
+            merged.addAll(mergeList(left, right, byName));
         }
 
         return merged;
