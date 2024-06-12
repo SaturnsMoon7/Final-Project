@@ -160,7 +160,7 @@ public class IngredientList extends ArrayList<Ingredient> {
             String numberStr = spaceBuilder("#", numberSpace);
             String nameStr= spaceBuilder("Name", nameSpace);
             String amountStr = spaceBuilder("Amount", amountSpace);
-            String titleStr = "|" + numberStr + "|" + nameStr + "||" + amountStr + "|";
+            String titleStr = "|" + numberStr + "|" + nameStr + "|" + amountStr + "|";
             System.out.println(titleStr);
             System.out.println(symbolBuilder("-", titleStr.length()));
         }
@@ -172,7 +172,7 @@ public class IngredientList extends ArrayList<Ingredient> {
             String numberStr = spaceBuilder(String.valueOf(i + 1), numberSpace);
             String nameStr = spaceBuilder(ingredientName, nameSpace);
             String amoutnStr = spaceBuilder(ingredientAmount, amountSpace);
-            System.out.println("|" + numberStr + "|" + nameStr + "||" + amoutnStr + "|");
+            System.out.println("|" + numberStr + "|" + nameStr + "|" + amoutnStr + "|");
         }
         System.out.println();
     }

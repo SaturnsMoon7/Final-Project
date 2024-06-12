@@ -108,8 +108,9 @@ public class Main
                                    "\n1. Add a new meal" + 
                                    "\n2. Remove a meal" + 
                                    "\n3. Edit a meal" +
-                                   "\n4. Make a meal" +
-                                   "\n5. Return";
+                                   "\n4. Sort meals" +
+                                   "\n5. Make a meal" +
+                                   "\n6. Return";
             int choice = 0;
             if (MainMeals.size() == 0) { 
                 System.out.println(initialActions); 
@@ -134,8 +135,9 @@ public class Main
                     removeMeal(MainMeals); 
                     break;
                 case 3: editMeal(MainMeals); break;
-                case 4: makeMeal(MainMeals); break;
-                case 5:
+                case 4:
+                case 5: makeMeal(MainMeals); break;
+                case 6:
                     //Returns to the main menu
                     System.out.println("Returning");
                     wait(100); 
