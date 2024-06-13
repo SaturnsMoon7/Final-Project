@@ -132,8 +132,6 @@ public class MealList extends ArrayList<Meal> {
 
         boolean mergeCheck;
 
-        //compareToIgnoreCase
-
         if (byName){
             mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
         }

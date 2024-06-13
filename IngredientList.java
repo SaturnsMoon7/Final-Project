@@ -89,12 +89,14 @@ public class IngredientList extends ArrayList<Ingredient> {
     //Merge sort
     private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList, boolean byName) {
         //temp fix for uneven arrays lmao
+         
         if (arrayList.size() % 2 != 0) {
+            System.out.println("Uneven list add filler");
             return arrayList;
         }
 
         //TODO: UNEVEN LIST WONT WORK. UPDATE MEALLIST TOO ONCE FIX IS FOUND
-        int mid = Math.round(arrayList.size() / 2);
+        int mid = arrayList.size() / 2;
 
         ArrayList<Ingredient> left = new ArrayList<Ingredient>(arrayList.subList(0, mid));
         ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
@@ -108,6 +110,8 @@ public class IngredientList extends ArrayList<Ingredient> {
     }
 
     private ArrayList<Ingredient> mergeList(ArrayList<Ingredient> left, ArrayList<Ingredient> right, boolean byName) {
+        ArrayList<Ingredient> merged = new ArrayList<>();
+
         if (left.isEmpty()) {
             return right;
         }
@@ -115,13 +119,9 @@ public class IngredientList extends ArrayList<Ingredient> {
             return left;
         }
 
-        ArrayList<Ingredient> merged = new ArrayList<>();
-
+        //Setup check requirement for name/num
         boolean mergeCheck;
 
-        //compareToIgnoreCase
-
-        //TODO: CANT SORT A -> Z 
         if (byName){
             mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
         }
@@ -132,7 +132,8 @@ public class IngredientList extends ArrayList<Ingredient> {
         if (mergeCheck) {
             merged.add(left.remove(0));
             merged.addAll(mergeList(left, right, byName));
-        } else {
+        } 
+        else {
             merged.add(right.remove(0));
             merged.addAll(mergeList(left, right, byName));
         }
