@@ -120,8 +120,9 @@ public class IngredientList extends ArrayList<Ingredient> {
 
         //compareToIgnoreCase
 
+        //TODO: CANT SORT A -> Z
         if (byName){
-            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= 0;
+            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
         }
         else{
             mergeCheck = left.get(0).getAmount().getGrams() >= right.get(0).getAmount().getGrams();
