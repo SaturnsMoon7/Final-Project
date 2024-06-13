@@ -12,6 +12,7 @@ public class Meal
         this.time = time;
     }
 
+    // Change Functions
     public void changeName(String newName) { 
         name = newName; 
     }
@@ -20,6 +21,7 @@ public class Meal
         time = newTime; 
     }
 
+    // Get Functions
     public String getName() {
         return name;
     }

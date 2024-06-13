@@ -21,6 +21,7 @@ public class Main
 
         System.out.println();
         
+        // Main Program Loop
         boolean looping = true;
         while (looping) {
             // Print out list of options
@@ -30,6 +31,7 @@ public class Main
                             + "\n3. Exit program");
             int choice = getUserInt(1, 3);
 
+            // SWITCH CASE
             switch (choice) {
                 case 1: // Manage Ingredients
                     ManageIngredients(MainIngredients);
@@ -46,15 +48,18 @@ public class Main
         }
     }
 
-
-
     // Manages a list of ingredients
     public static void ManageIngredients(IngredientList mainIngredients) {
         boolean looping = true;
+
+        //Ingredients loop
         while (looping){
+
+            //Display ingredients
             clear();
             mainIngredients.displayIngredients();
             
+            //Define actions
             String initialActions = "Choose an action from the following list:"
                                     + "\n1. Add an ingredient"
                                     + "\n2. Return";
@@ -65,6 +70,8 @@ public class Main
                                     + "\n3. Edit an ingredient"
                                     + "\n4. Sort ingredients"
                                     + "\n5. Return";
+
+            // Limit User options depending on the list size
             int choice = 0;
             if (mainIngredients.size() == 0) {
                 System.out.println(initialActions);
@@ -88,9 +95,7 @@ public class Main
                 case 4: sortIngredients(mainIngredients); break;
 
                 case 5:
-                    //Returns to the main menu
-                    System.out.println("Returning");
-                    wait(100); 
+                    returnToMenu();
                     return;
             }
         }
@@ -98,8 +103,12 @@ public class Main
 
     private static void ManageMeals(MealList mainMeals, IngredientList mainIngredients) {
         boolean looping = true;
+
+        //Main meal loop
         while (looping) {
             clear();
+
+            //Display Meals
             mainMeals.displayMeals();
 
             String initialActions = "Choose a following action" +
@@ -113,6 +122,8 @@ public class Main
                                    "\n5. Make a meal" +
                                    "\n6. Return";
             int choice = 0;
+
+            // Limit User options depending on list size
             if (mainMeals.size() == 0) { 
                 System.out.println(initialActions); 
                 choice = getUserInt(1, 2);
@@ -125,7 +136,7 @@ public class Main
             switch (choice) {
                 case 1: addMeal(mainMeals); break;
                 case 2: 
-                    if(mainMeals.size() == 0){ returnToMenu(); return;}
+                    if(mainMeals.size() == 0){ returnToMenu(); return;} // Returns to menu if small list
                     else{ removeMeal(mainMeals); }
                     break;
                 case 3: editMeal(mainMeals); break;
@@ -143,6 +154,7 @@ public class Main
         System.out.println();
     }
 
+    //Ingredient functions
     private static void addIngredient(IngredientList mainIngredients) {
         //Header
         System.out.println("1. Add an ingredient\n");
@@ -227,38 +239,12 @@ public class Main
         System.out.println("Enter the method of sorting");
         int choice = getUserInt(1, 2);
 
-        //Illusion of free will rn
         switch (choice) {
             case 1:
                 mainIngredients.sortListByName();
                 break;
             case 2:
                 mainIngredients.sortListByNum();
-                break;
-        }
-    }
-
-    private static void sortMeals(MealList mainMeals) {
-        // Header
-        System.out.println("4. Sort ingredients");
-        System.out.println();
-
-        mainMeals.displayMeals();
-
-        System.out.println("How do you want to sort?"
-                        + "\n1. By name"
-                        + "\n2. By time prep");
-
-        System.out.println("Enter the method of sorting");
-        int choice = getUserInt(1, 2);
-
-        //Illusion of free will rn
-        switch (choice) {
-            case 1:
-                mainMeals.sortListByName();
-                break;
-            case 2:
-                 mainMeals.sortListByTime();
                 break;
         }
     }
@@ -289,6 +275,8 @@ public class Main
     }
 
     public static MeasurementUnit getMeasurementUnit() {
+        //int to enum function
+
         System.out.println("1.tsp\n2.tbsp\n3.grams\n4.cups\n5.litres");
         int choice = getUserInt(1, 5);
 
@@ -301,7 +289,33 @@ public class Main
             default:return null;
         }
     }
+    //End of ingredient functions
 
+
+    //Meal functions
+    private static void sortMeals(MealList mainMeals) {
+        // Header
+        System.out.println("4. Sort ingredients");
+        System.out.println();
+
+        mainMeals.displayMeals();
+
+        System.out.println("How do you want to sort?"
+                        + "\n1. By name"
+                        + "\n2. By time prep");
+
+        System.out.println("Enter the method of sorting");
+        int choice = getUserInt(1, 2);
+
+        switch (choice) {
+            case 1:
+                mainMeals.sortListByName();
+                break;
+            case 2:
+                 mainMeals.sortListByTime();
+                break;
+        }
+    }
 
     private static void addMeal(MealList mainMeals) {
         System.out.println("1. Add a meal");
@@ -354,8 +368,18 @@ public class Main
                 break;
 
             case 2: 
-            // TODO: allow user to add/remove ingredients 
-                editIngredient(mainMeals.get(index).getIngredients());
+                System.out.println("Specifcally What?");
+                System.out.println("1. Add new ingredient"
+                                    + "\n2. Remove Ingredient"
+                                    + "\n3. Edit Ingredient\n");
+
+                choice = getUserInt(1,3);
+                
+                switch (choice) {
+                    case 1: addIngredient(mainMeals.get(index).getIngredients()); break;
+                    case 2: removeIngredient(mainMeals.get(index).getIngredients()); break;
+                    case 3: editIngredient(mainMeals.get(index).getIngredients()); break;
+                }
                 break;
 
             case 3: 
@@ -432,7 +456,9 @@ public class Main
         Meal newMeal = new Meal(name, mealIngredients, time);
         return newMeal;
     }
+    //End of meal functions
 
+    //Getter functions
     //Gets any whole numbers.
     public static int getUserInt() {
         Scanner scn = new Scanner(System.in);
@@ -498,9 +524,7 @@ public class Main
     }
     
 
-
-
-
+    //Extras
     // Clears the terminal
     public static void clear() {
     // Clear the console screen 

@@ -29,6 +29,7 @@ public class IngredientList extends ArrayList<Ingredient> {
         this.set(index, newIngredient);
     }
 
+    //Sorting Versions
     public void sortListByName() {
         ArrayList<Ingredient> tempList = sortList(this, true);
         this.clear();
@@ -90,12 +91,14 @@ public class IngredientList extends ArrayList<Ingredient> {
         if (arrayList.size() == 2) {
             return arrayList;
         }
-        int mid = arrayList.size() / 2;
+
+        //TODO: UNEVEN LIST WONT WORK. UPDATE MEALLIST TOO ONCE FIX IS FOUND
+        int mid = Math.round(arrayList.size() / 2);
+
         ArrayList<Ingredient> left = new ArrayList<Ingredient>(arrayList.subList(0, mid));
         ArrayList<Ingredient> right = new ArrayList<Ingredient>(arrayList.subList(mid, arrayList.size()));
 
         // Recursively sort the left and right halves
-        // if this bool on
         left = sortList(left, byName);
         right = sortList(right, byName);
 
@@ -118,7 +121,7 @@ public class IngredientList extends ArrayList<Ingredient> {
         //compareToIgnoreCase
 
         if (byName){
-            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
+            mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= 0;
         }
         else{
             mergeCheck = left.get(0).getAmount().getGrams() >= right.get(0).getAmount().getGrams();

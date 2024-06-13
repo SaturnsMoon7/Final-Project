@@ -1,8 +1,10 @@
 public class Ingredient
 {
+    // Define Variables
     private String name;
     private Quantities amount;
 
+    //Constructor
     Ingredient(String name, Quantities amount) {
         this.name = name;
         this.amount = amount;

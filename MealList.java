@@ -29,6 +29,7 @@ public class MealList extends ArrayList<Meal> {
         this.set(index, newMeal);
     }
     
+    // Display Functions
     public void displayMeal(int index) {
         Meal thisMeal = this.get(index);
         String name = thisMeal.getName();

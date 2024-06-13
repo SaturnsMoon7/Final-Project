@@ -1,3 +1,4 @@
+// Define Units
 enum MeasurementUnit{
     tsp,
     tbsp,
@@ -19,6 +20,7 @@ public class Quantities {
     private String customUnit;
     private boolean customUnitReal = false;
 
+    //Constructor
     Quantities(float amount, MeasurementUnit unit) {
         this.amount = amount;
         this.unit = unit;
