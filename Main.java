@@ -1,8 +1,9 @@
-// Fix no ingredients when editing meal ingredients
-// display header action when doing action like editing or adding
-// weird bug with 5th measurement
-
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+import javax.print.attribute.HashAttributeSet;
+import javax.swing.plaf.metal.MetalInternalFrameTitlePane;
 
 public class Main
 {
@@ -35,7 +36,7 @@ public class Main
                     continue;
             
                 case 2: // Manage Meals
-                    ManageMeals(MainMeals);
+                    ManageMeals(MainMeals, MainIngredients);
                     continue;
 
                 case 3: // Exit Program
@@ -48,11 +49,11 @@ public class Main
 
 
     // Manages a list of ingredients
-    public static void ManageIngredients(IngredientList MainIngredients) {
+    public static void ManageIngredients(IngredientList mainIngredients) {
         boolean looping = true;
         while (looping){
             clear();
-            MainIngredients.displayIngredients();
+            mainIngredients.displayIngredients();
             
             String initialActions = "Choose an action from the following list:"
                                     + "\n1. Add an ingredient"
@@ -65,7 +66,7 @@ public class Main
                                     + "\n4. Sort ingredients"
                                     + "\n5. Return";
             int choice = 0;
-            if (MainIngredients.size() == 0) {
+            if (mainIngredients.size() == 0) {
                 System.out.println(initialActions);
                 choice = getUserInt(1, 2);
             } else {
@@ -75,16 +76,16 @@ public class Main
             clear();
 
             switch (choice) {
-                case 1: addIngredient(MainIngredients); break;
+                case 1: addIngredient(mainIngredients); break;
 
                 case 2: 
-                    if (MainIngredients.size() == 0) { return; } // If list is empty, (2) returns
-                    removeIngredient(MainIngredients); 
+                    if (mainIngredients.size() == 0) { return; } // If list is empty, (2) returns
+                    removeIngredient(mainIngredients); 
                     break;
 
-                case 3: editIngredient(MainIngredients); break;
+                case 3: editIngredient(mainIngredients); break;
 
-                case 4: sortIngredients(MainIngredients); break;
+                case 4: sortIngredients(mainIngredients); break;
 
                 case 5:
                     //Returns to the main menu
@@ -95,11 +96,11 @@ public class Main
         }
     }
 
-    private static void ManageMeals(MealList MainMeals) {
+    private static void ManageMeals(MealList mainMeals, IngredientList mainIngredients) {
         boolean looping = true;
         while (looping) {
             clear();
-            MainMeals.displayMeals();
+            mainMeals.displayMeals();
 
             String initialActions = "Choose a following action" +
                                     "\n1. Add a new meal" +
@@ -112,7 +113,7 @@ public class Main
                                    "\n5. Make a meal" +
                                    "\n6. Return";
             int choice = 0;
-            if (MainMeals.size() == 0) { 
+            if (mainMeals.size() == 0) { 
                 System.out.println(initialActions); 
                 choice = getUserInt(1, 2);
             } else { 
@@ -122,14 +123,14 @@ public class Main
             clear();
 
             switch (choice) {
-                case 1: addMeal(MainMeals); break;
+                case 1: addMeal(mainMeals); break;
                 case 2: 
-                    if(MainMeals.size() == 0){ returnToMenu(); return;}
-                    else{ removeMeal(MainMeals); }
+                    if(mainMeals.size() == 0){ returnToMenu(); return;}
+                    else{ removeMeal(mainMeals); }
                     break;
-                case 3: editMeal(MainMeals); break;
-                case 4: sortMeals(MainMeals); break;
-                case 5: makeMeal(MainMeals); break;
+                case 3: editMeal(mainMeals); break;
+                case 4: sortMeals(mainMeals); break;
+                case 5: makeMeal(mainMeals, mainIngredients); break;
                 case 6: returnToMenu(); return;
             }
         }    
@@ -142,7 +143,7 @@ public class Main
         System.out.println();
     }
 
-    private static void addIngredient(IngredientList MainIngredients) {
+    private static void addIngredient(IngredientList mainIngredients) {
         //Header
         System.out.println("1. Add an ingredient\n");
 
@@ -150,37 +151,37 @@ public class Main
         Ingredient newIngredient = getIngredient();
 
         System.out.println("Ingredient Added");
-        MainIngredients.add(newIngredient);
+        mainIngredients.add(newIngredient);
     }
 
-    private static void removeIngredient(IngredientList MainIngredients) {
+    private static void removeIngredient(IngredientList mainIngredients) {
         //Header
         System.out.println("2. Remove an Ingredient");
         System.out.println();
 
         //Display all ingredients
-        MainIngredients.displayIngredients();
+        mainIngredients.displayIngredients();
 
         //Gets user input and removes the index
         System.out.println("Enter the index of the ingredient you want to remove");
-        int index = getUserInt(1, MainIngredients.size()) - 1;
-        MainIngredients.remove(index);
+        int index = getUserInt(1, mainIngredients.size()) - 1;
+        mainIngredients.remove(index);
     }
 
     //Functions in ManageIngredients()
-    private static void editIngredient(IngredientList MainIngredients) {
+    private static void editIngredient(IngredientList mainIngredients) {
         //Header
         System.out.println("3. Edit an Ingredient");
         System.out.println();
 
-        MainIngredients.displayIngredients();
+        mainIngredients.displayIngredients();
 
         System.out.println("Enter the index of the ingredient you want to edit");
-        int index = getUserInt(1, MainIngredients.size()) - 1;
+        int index = getUserInt(1, mainIngredients.size()) - 1;
         System.out.println();
 
         System.out.println("Editing ingredient: ");
-        MainIngredients.displayIngredient(index);
+        mainIngredients.displayIngredient(index);
 
         System.out.println("What do you want to edit?"
                         + "\n1. Name"
@@ -193,13 +194,13 @@ public class Main
             case 1:
                 System.out.println("Enter the new name:");
                 String newName = getUserStr();
-                MainIngredients.editItem(index, newName);
+                mainIngredients.editItem(index, newName);
                 break;
             
             case 2:
                 System.out.println("Enter the new amount:");
                 Quantities newAmount = getAmount();
-                MainIngredients.editItem(index, newAmount);
+                mainIngredients.editItem(index, newAmount);
                 break;
 
             case 3:
@@ -207,17 +208,17 @@ public class Main
                 Ingredient newIngredient = getIngredient();
 
                 //Edits item
-                MainIngredients.editItem(index, newIngredient);
+                mainIngredients.editItem(index, newIngredient);
                 break;
         }
     }
 
-    private static void sortIngredients(IngredientList MainIngredients) {
+    private static void sortIngredients(IngredientList mainIngredients) {
         // Header
         System.out.println("4. Sort ingredients");
         System.out.println();
 
-        MainIngredients.displayIngredients();
+        mainIngredients.displayIngredients();
 
         System.out.println("How do you want to sort?"
                         + "\n1. By name"
@@ -229,20 +230,20 @@ public class Main
         //Illusion of free will rn
         switch (choice) {
             case 1:
-                MainIngredients.sortListByName();
+                mainIngredients.sortListByName();
                 break;
             case 2:
-                MainIngredients.sortListByNum();
+                mainIngredients.sortListByNum();
                 break;
         }
     }
 
-    private static void sortMeals(MealList MainMeals) {
+    private static void sortMeals(MealList mainMeals) {
         // Header
         System.out.println("4. Sort ingredients");
         System.out.println();
 
-        MainMeals.displayMeals();
+        mainMeals.displayMeals();
 
         System.out.println("How do you want to sort?"
                         + "\n1. By name"
@@ -254,10 +255,10 @@ public class Main
         //Illusion of free will rn
         switch (choice) {
             case 1:
-                MainMeals.sortListByName();
+                mainMeals.sortListByName();
                 break;
             case 2:
-            MainMeals.sortListByTime();
+                 mainMeals.sortListByTime();
                 break;
         }
     }
@@ -302,41 +303,41 @@ public class Main
     }
 
 
-    private static void addMeal(MealList MainMeals) {
+    private static void addMeal(MealList mainMeals) {
         System.out.println("1. Add a meal");
         System.out.println();
 
         Meal newMeal = getMeal();
         System.out.println("Meal added");
-        MainMeals.add(newMeal);
+        mainMeals.add(newMeal);
     }
 
-    private static void removeMeal(MealList MainMeals) {
+    private static void removeMeal(MealList mainMeals) {
         //Header
         System.out.println("2. Remove a meal");
 
         //Display all ingredients
-        MainMeals.displayMeals();
+        mainMeals.displayMeals();
 
         //Gets user input and removes the index
         System.out.println("\nEnter the index of the meal you want to remove");
-        int index = getUserInt(1, MainMeals.size()) - 1;
-        MainMeals.remove(index);
+        int index = getUserInt(1, mainMeals.size()) - 1;
+        mainMeals.remove(index);
     }
 
-    private static void editMeal(MealList MainMeals) {
+    private static void editMeal(MealList mainMeals) {
         // Header
         System.out.println("3. Edit a meal");
         System.out.println();
 
-        MainMeals.displayMeals();
+        mainMeals.displayMeals();
 
         System.out.println("Enter the index of the meal you want to edit");
-        int index = getUserInt(1, MainMeals.size()) - 1;
+        int index = getUserInt(1, mainMeals.size()) - 1;
         System.out.println();
 
         System.out.println("Editing meal: ");
-        MainMeals.displayMeal(index);
+        mainMeals.displayMeal(index);
 
         System.out.println("What do you want to edit?"
                         + "\n1. Name"
@@ -349,29 +350,73 @@ public class Main
             case 1:
                 System.out.println("Enter the new name:");
                 String newName = getUserStr();
-                MainMeals.editMeal(index, newName);
+                mainMeals.editMeal(index, newName);
                 break;
 
-            case 2: editIngredient(MainMeals.get(index).getIngredients());
+            case 2: 
+                editIngredient(mainMeals.get(index).getIngredients());
+                break;
 
             case 3: 
                 Meal newMeal = getMeal();
-                MainMeals.editMeal(index, newMeal);
+                mainMeals.editMeal(index, newMeal);
+                break;
         }
     }
 
-    private static void makeMeal(MealList MainMeals) {
+    private static void makeMeal(MealList mainMeals, IngredientList mainIngredients) {
         // Header
         System.out.println("4. Make a meal");
         System.out.println();
 
-        MainMeals.displayMeals();
+        mainMeals.displayMeals();
 
-        System.out.println("Enter the index of the meal you wnat to make");
-        int index = getUserInt(1, MainMeals.size()) - 1;
+        System.out.println("Enter the index of the meal you want to check");
+        int index = getUserInt(1, mainMeals.size()) - 1;
+        IngredientList mealIngredients = mainMeals.get(index).getIngredients();
 
+        System.out.println();
         System.out.println("Chosen meal: ");
-        MainMeals.displayMeal(index);
+        mainMeals.displayMeal(index);
+        System.out.println("Checking...");
+        wait(4000);
+
+        Map<String, Float> nameAmount = new HashMap<>();
+        for (int i = 0; i < mainIngredients.size(); i++) {
+            String ingredientName = mainIngredients.get(i).getName();
+            Float ingredientGrams = mainIngredients.get(i).getAmount().getGrams();
+            nameAmount.put(ingredientName, ingredientGrams);
+        }
+
+        boolean notEnough = false;
+        for (int i = 0; i < mealIngredients.size(); i++) { // Loops though each meal ingredient
+            String ingredientName = mealIngredients.get(i).getName();
+
+            if (nameAmount.containsKey(ingredientName)) {  // checks pantry if ingredient is available
+
+                if (mealIngredients.get(i).getAmount().getGrams() <= nameAmount.get(ingredientName)) { // checks if there is enough ingredient
+                    System.out.println("- Sufficient amount: " + ingredientName);
+                } else { // if there isnt enough
+                    System.out.println("- Insufficient amount: " + ingredientName);
+                    notEnough = true;
+                }
+
+            } else { // if the meal ingredient isnt in the pantry
+                System.out.println("- Missing ingredient: " + ingredientName);
+                notEnough = true;
+            }
+
+           wait(1500);
+        }
+        
+        System.out.println();
+        System.out.println("Results:");
+        if (notEnough) {
+            System.out.println("Insufficent ingredients for meal");
+        } else {
+            System.out.println("Meal can succesfully be made");
+        }
+        wait(8000);
     }
 
     private static Meal getMeal() {

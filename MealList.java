@@ -28,7 +28,7 @@ public class MealList extends ArrayList<Meal> {
     public void editMeal(int index, Meal newMeal) {
         this.set(index, newMeal);
     }
-
+    
     public void displayMeal(int index) {
         Meal thisMeal = this.get(index);
         String name = thisMeal.getName();
@@ -105,7 +105,7 @@ public class MealList extends ArrayList<Meal> {
         this.addAll(tempList);
     }
 
-    public void sortListByNum(){
+    public void sortListByTime(){
         ArrayList<Meal> tempList = sortList(this, false);
         this.clear();
         this.addAll(tempList);
