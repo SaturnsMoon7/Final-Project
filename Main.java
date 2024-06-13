@@ -118,7 +118,7 @@ public class Main
                 choice = getUserInt(1, 2);
             } else { 
                 System.out.println(normalActions); 
-                choice = getUserInt(1, 5);
+                choice = getUserInt(1, 6);
             }
             clear();
 
@@ -354,6 +354,7 @@ public class Main
                 break;
 
             case 2: 
+            // TODO: allow user to add/remove ingredients 
                 editIngredient(mainMeals.get(index).getIngredients());
                 break;
 
