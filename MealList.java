@@ -28,8 +28,7 @@ public class MealList extends ArrayList<Meal> {
     public void editMeal(int index, Meal newMeal) {
         this.set(index, newMeal);
     }
-    
-    // Display Functions
+
     public void displayMeal(int index) {
         Meal thisMeal = this.get(index);
         String name = thisMeal.getName();
@@ -53,7 +52,6 @@ public class MealList extends ArrayList<Meal> {
         if (this.size() == 0) {
             System.out.println("No saved meals");
         } else {
-            System.out.println("Youre available meals: ");
             String numberStr = spaceBuilder("#", numberSpace);
             String nameStr = spaceBuilder("Name", nameSpace);
             String timeStr = spaceBuilder("Time (min)", timeSpace);
@@ -76,27 +74,17 @@ public class MealList extends ArrayList<Meal> {
         System.out.println();
     }
 
-    // Creates a string with blank spaces up to the specified length
-    public String spaceBuilder(String str, int length) {
-        str = " " + str; // Makes each string start with a space
-        int initialLength = str.length();
-
-        int difference = length - initialLength; // The number of characters left to satisfy the length
-        for (int i = 0; i < difference; i++) { 
-            str += " "; 
+    private String spaceBuilder(String str, int amount) {
+        str = " " + str;
+        int difference = amount - str.length(); 
+        for (int i = 0; i < difference; i++) {
+            str += " ";
         }
-
         return str;
     }
 
-    // Creates a string with a character up ot the specified length
-    public String symbolBuilder (String symbol, int length) {
-        String str = "";
-        for (int i = 0; i < length; i++) { 
-            str += symbol; 
-        }
-        
-        return str;
+    private String symbolBuilder(String symbol, int length) {
+        return symbol.repeat(length);
     }
 
     //Sorting
@@ -114,10 +102,11 @@ public class MealList extends ArrayList<Meal> {
 
     //Merge sort
     private ArrayList<Meal> sortList(ArrayList<Meal> arrayList, boolean byName) {
-        if (arrayList.size() == 2) 
-        {
+        //temp fix for uneven arrays lmao
+        if (arrayList.size() % 2 != 0) {
             return arrayList;
         }
+
         int mid = arrayList.size() / 2;
         ArrayList<Meal> left = new ArrayList<Meal>(arrayList.subList(0, mid));
         ArrayList<Meal> right = new ArrayList<Meal>(arrayList.subList(mid, arrayList.size()));

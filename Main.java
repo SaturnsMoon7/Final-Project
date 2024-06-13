@@ -431,7 +431,7 @@ public class Main
                 notEnough = true;
             }
 
-           wait(1500);
+           wait(1000);
         }
         
         System.out.println();

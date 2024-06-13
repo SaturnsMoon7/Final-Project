@@ -88,7 +88,8 @@ public class IngredientList extends ArrayList<Ingredient> {
 
     //Merge sort
     private ArrayList<Ingredient> sortList(ArrayList<Ingredient> arrayList, boolean byName) {
-        if (arrayList.size() == 2) {
+        //temp fix for uneven arrays lmao
+        if (arrayList.size() % 2 != 0) {
             return arrayList;
         }
 
@@ -120,7 +121,7 @@ public class IngredientList extends ArrayList<Ingredient> {
 
         //compareToIgnoreCase
 
-        //TODO: CANT SORT A -> Z
+        //TODO: CANT SORT A -> Z 
         if (byName){
             mergeCheck = left.get(0).getName().compareToIgnoreCase(right.get(0).getName()) <= right.get(0).getName().compareToIgnoreCase(left.get(0).getName());
         }
